@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import RootLayoutProvider from "@/components/RootLayout";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -37,9 +38,11 @@ export default function RootLayout({
         "font-sans",
         inter.variable,
       )}>
-      <RootLayoutProvider>
-        <body className="min-h-full flex flex-col">{children}</body>
-      </RootLayoutProvider>
+      <Suspense fallback={<div>Loading...</div>}>
+        <RootLayoutProvider>
+          <body className="min-h-full flex flex-col">{children}</body>
+        </RootLayoutProvider>
+      </Suspense>
     </html>
   );
 }

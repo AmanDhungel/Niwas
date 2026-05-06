@@ -55,9 +55,9 @@ export default function FeaturedProperties() {
           return (
             <Card
               key={prop._id}
-              className="border-none shadow-none group cursor-pointer"
+              className=" shadow-none!  group cursor-pointer border-none! ring-0 p-0"
               onClick={() => router.push(`/e-com/single-property/${prop._id}`)}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100">
+              <div className="relative aspect-[4/3] overflow-hidden  rounded-xl bg-gray-100">
                 <Image
                   width={600}
                   height={450}
@@ -85,7 +85,7 @@ export default function FeaturedProperties() {
                 </button>
               </div>
 
-              <CardContent className="px-0 py-4">
+              <CardContent className="px-0 py-4 border-none! outline-none!">
                 <div className="flex justify-between items-start mb-1">
                   <h3 className="font-bold text-lg truncate w-full pr-2">
                     {prop.basic_info?.name}
@@ -115,7 +115,6 @@ export default function FeaturedProperties() {
         })}
       </div>
 
-      {/* Pagination - Hidden if only one page */}
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-4 mt-12">
           <Button

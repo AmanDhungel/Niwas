@@ -56,7 +56,7 @@ export default function FeaturedProperties() {
             <Card
               key={prop._id}
               className=" shadow-none!  group cursor-pointer border-none! ring-0 p-0"
-              onClick={() => router.push(`/e-com/single-property/${prop._id}`)}>
+              onClick={() => router.push(`/single-property/${prop._id}`)}>
               <div className="relative aspect-[4/3] overflow-hidden  rounded-xl bg-gray-100">
                 <Image
                   width={600}

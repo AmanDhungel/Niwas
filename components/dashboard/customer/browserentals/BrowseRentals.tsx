@@ -29,6 +29,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 // --- Mock Data ---
 const RENTALS = [
@@ -124,7 +125,6 @@ export default function BrowseRentals() {
 
   return (
     <div className="w-full min-h-screen bg-white p-6 md:p-10 space-y-8">
-      {/* --- Page Header --- */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
         <div className="space-y-1">
           <h1 className="text-2xl font-bold text-slate-900">Browse Rentals</h1>
@@ -158,7 +158,6 @@ export default function BrowseRentals() {
         </Button>
       </div>
 
-      {/* --- Search Bar --- */}
       <div className="flex items-center gap-2">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -176,7 +175,6 @@ export default function BrowseRentals() {
         </Button>
       </div>
 
-      {/* --- Short-term Rentals Section --- */}
       <section className="space-y-6">
         <div className="flex items-center gap-2 font-semibold text-slate-900">
           <Clock className="h-5 w-5 text-[#F26522]" />
@@ -194,7 +192,6 @@ export default function BrowseRentals() {
         </div>
       </section>
 
-      {/* --- Long-term Rentals Section --- */}
       <section className="space-y-6 pb-20">
         <div className="flex items-center gap-2 font-semibold text-slate-900">
           <Home className="h-5 w-5 text-[#F26522]" />
@@ -215,13 +212,13 @@ export default function BrowseRentals() {
   );
 }
 
-// --- Sub-components ---
-
 function ShortTermCard({ rental }: any) {
   return (
     <Card className="overflow-hidden border-slate-100 shadow-sm group hover:shadow-md transition-shadow">
       <div className="relative h-56 w-full">
-        <img
+        <Image
+          width={1000}
+          height={1000}
           src={rental.img}
           alt={rental.title}
           className="w-full h-full object-cover"
@@ -300,7 +297,9 @@ function LongTermCard({ rental }: any) {
   return (
     <Card className="overflow-hidden border-slate-100 shadow-sm flex flex-col md:flex-row group hover:shadow-md transition-shadow">
       <div className="relative w-full md:w-56 h-48 md:h-auto">
-        <img
+        <Image
+          width={1000}
+          height={1000}
           src={rental.img}
           alt={rental.title}
           className="w-full h-full object-cover"

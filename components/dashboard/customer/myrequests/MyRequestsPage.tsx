@@ -41,7 +41,6 @@ const MyRequestsPage = () => {
         />
       </div>
 
-      {/* Active Requests List */}
       <Card className="border-none shadow-sm">
         <CardContent className="p-6 space-y-4">
           <h2 className="text-sm font-semibold text-slate-700 mb-4">

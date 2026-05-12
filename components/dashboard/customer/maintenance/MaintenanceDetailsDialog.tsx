@@ -43,21 +43,21 @@ export function MaintenanceDetailsDialog({
 
         <div className="bg-slate-50 p-4 rounded-lg border border-slate-100 my-6">
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-bold text-lg">{request.serviceType}</h3>
+            <h3 className="font-bold text-lg">{request?.serviceType}</h3>
             <Badge className="bg-blue-100 text-blue-600 hover:bg-blue-100">
-              {request.status}
+              {request?.status}
             </Badge>
             <Badge className="bg-yellow-100 text-yellow-600 hover:bg-yellow-100">
-              {request.priority}
+              {request?.priority}
             </Badge>
           </div>
           <p className="text-xs text-slate-500 uppercase font-bold">
-            Request ID: {request.id}
+            Request ID: {request?.id}
           </p>
           <p className="text-sm text-slate-600 mt-1 flex items-center gap-1">
             Considering:{" "}
             <span className="font-medium text-slate-800">
-              {request.propertyAddress}
+              {request?.propertyAddress}
             </span>
           </p>
         </div>
@@ -68,7 +68,7 @@ export function MaintenanceDetailsDialog({
               Description
             </h4>
             <p className="p-3 bg-white border rounded-md text-sm text-slate-600">
-              {request.description}
+              {request?.description}
             </p>
           </div>
 

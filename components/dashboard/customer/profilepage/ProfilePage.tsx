@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import AccountSettingsDialog from "./Form/AccountSettingsDialog";
 
 export default function ProfilePage() {
   return (
@@ -48,7 +49,6 @@ export default function ProfilePage() {
         </Breadcrumb>
       </div>
 
-      {/* --- Profile & Settings Section Header --- */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
         <div>
           <h2 className="text-xl font-semibold text-slate-900">
@@ -58,13 +58,9 @@ export default function ProfilePage() {
             Manage your account information
           </p>
         </div>
-        <Button className="bg-[#F26522] hover:bg-[#d95a1e] text-white gap-2 px-6">
-          <Settings className="h-4 w-4" />
-          Edit Profile
-        </Button>
+        <AccountSettingsDialog />
       </div>
 
-      {/* --- Main Profile Info Card --- */}
       <Card className="mb-6 border-slate-200">
         <CardContent className="p-8">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">

@@ -7,8 +7,7 @@ import { BaseRequest, MOCK_REQUESTS, RequestStatus } from "./schema";
 
 const MyRequestsPage = () => {
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8 bg-slate-50 min-h-screen">
-      {/* Header & Breadcrumbs */}
+    <div className="p-8  space-y-8  min-h-screen">
       <div className="space-y-1">
         <nav className="flex items-center text-xs text-muted-foreground gap-1">
           <span>🏠</span> <ChevronRight className="h-3 w-3" />{" "}
@@ -22,7 +21,6 @@ const MyRequestsPage = () => {
         </p>
       </div>
 
-      {/* Stats Summary Bar */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard
           label="Tour Requests"

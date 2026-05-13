@@ -43,7 +43,7 @@ export default function Marketplace() {
   };
 
   return (
-    <div className="p-8 space-y-6 bg-slate-50 min-h-screen">
+    <div className="p-8 space-y-6  min-h-screen">
       <div className="flex gap-4">
         <Button onClick={() => handleOpenDetails(MOCK_PROPERTY)}>
           Details

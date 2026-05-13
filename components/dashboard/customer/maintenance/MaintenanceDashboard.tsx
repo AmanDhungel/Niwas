@@ -11,7 +11,7 @@ export default function MaintenanceDashboard() {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   return (
-    <div className="p-8 bg-slate-50 min-h-screen">
+    <div className="p-8 min-h-screen">
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">

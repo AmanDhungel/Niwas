@@ -26,6 +26,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import MaintenanceDetailsModal from "./MaintenanceDetailsDialog";
+import { RequestMaintenanceForm } from "./RequestMaintenanceForm";
 
 const STATS = [
   {
@@ -96,10 +97,7 @@ export default function MaintenancePage() {
             Request inspections and repair services
           </p>
         </div>
-        <Button className="bg-[#f26522] hover:bg-[#d9541a] text-white rounded-md px-6 py-5 flex gap-2">
-          <PlusCircle size={18} />
-          New Request
-        </Button>
+        <RequestMaintenanceForm />
       </div>
 
       {/* Top Stats Grid */}

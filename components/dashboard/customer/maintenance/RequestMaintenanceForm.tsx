@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,18 +20,19 @@ import {
 } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { CalendarIcon, UploadCloud, X } from "lucide-react";
+import { CalendarIcon, PlusCircle, UploadCloud, X } from "lucide-react";
 
-export function RequestMaintenanceForm({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) {
+export function RequestMaintenanceForm() {
+  const [open, setOpen] = useState(false);
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[700px] p-8 overflow-y-auto max-h-[90vh]">
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button className="bg-[#f26522] hover:bg-[#d9541a] text-white rounded-md px-6 py-5 flex gap-2">
+          <PlusCircle size={18} />
+          New Request
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="min-w-4xl p-8 overflow-y-auto max-h-[90vh]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-slate-800">
             Request Maintenance Service
@@ -110,7 +112,7 @@ export function RequestMaintenanceForm({
             <Button
               variant="outline"
               type="button"
-              onClick={onClose}
+              onClick={() => setOpen(false)}
               className="px-8 h-12">
               Cancel
             </Button>

@@ -6,206 +6,154 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogClose,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
-  X,
-  CheckCircle2,
-  MapPin,
+  BedDouble,
+  Bath,
   Square,
-  TrendingUp,
-  BarChart3,
-  Calendar,
+  MapPin,
+  Wifi,
+  Car,
+  Wind,
+  Tv,
+  User,
 } from "lucide-react";
-import { Property } from "./schema";
-import { cn } from "@/lib/utils";
 
-// Updated Interface to match your usage
 interface PropertyDetailsProps {
-  property: Property | null;
   isOpen: boolean;
   onClose: () => void;
-  onAction: (type: "offer" | "visit") => void; // Single function to handle both
 }
 
 export function PropertyDetailsDialog({
-  property,
   isOpen,
   onClose,
-  onAction,
 }: PropertyDetailsProps) {
-  if (!property) return null;
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[900px] p-0 overflow-hidden border-none shadow-2xl">
-        <div className="absolute right-4 top-4 z-10">
-          <DialogClose asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full bg-white/20 hover:bg-white/40 text-white">
-              <X className="h-4 w-4" />
-            </Button>
-          </DialogClose>
+      <DialogContent className="max-w-3xl p-0 overflow-hidden border-none shadow-2xl bg-white">
+        <div className="relative h-64 w-full">
+          <img
+            src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&q=80&w=1200"
+            alt="Luxury Beach House"
+            className="w-full h-full object-cover"
+          />
+          <Badge className="absolute top-4 left-4 bg-[#f26522] text-white border-none px-3 py-1">
+            Featured Property
+          </Badge>
         </div>
 
-        <div className="overflow-y-auto max-h-[95vh]">
-          {/* Property Image Hero */}
-          <div className="relative h-[350px] w-full">
-            <img
-              src={property.image}
-              alt={property.title}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute top-4 left-4">
-              <Badge className="bg-[#f26522] border-none px-3 py-1 text-xs uppercase font-bold">
-                Featured
-              </Badge>
+        <div className="p-8">
+          <DialogHeader className="flex flex-row justify-between items-start space-y-0">
+            <div className="space-y-1">
+              <DialogTitle className="text-3xl font-bold text-slate-900">
+                Luxury Beach House
+              </DialogTitle>
+              <div className="flex items-center text-slate-500">
+                <MapPin className="h-4 w-4 mr-1 text-[#f26522]" />
+                <span className="text-sm">
+                  Malibu, California • Property ID: STR-002
+                </span>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-3xl font-bold text-[#f26522]">$350</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                per night
+              </p>
+            </div>
+          </DialogHeader>
+
+          {/* Quick Specs */}
+          <div className="flex gap-6 mt-6 pb-6 border-b border-slate-100">
+            <div className="flex items-center gap-2">
+              <div className="p-2 bg-slate-50 rounded-lg">
+                <BedDouble className="h-5 w-5 text-slate-600" />
+              </div>
+              <div>
+                <p className="text-sm font-bold">3</p>
+                <p className="text-[10px] text-slate-500 uppercase">Bedrooms</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="p-2 bg-slate-50 rounded-lg">
+                <Bath className="h-5 w-5 text-slate-600" />
+              </div>
+              <div>
+                <p className="text-sm font-bold">2</p>
+                <p className="text-[10px] text-slate-500 uppercase">
+                  Bathrooms
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="p-2 bg-slate-50 rounded-lg">
+                <Square className="h-5 w-5 text-slate-600" />
+              </div>
+              <div>
+                <p className="text-sm font-bold">1,200</p>
+                <p className="text-[10px] text-slate-500 uppercase">Sq Ft</p>
+              </div>
             </div>
           </div>
 
-          <div className="p-8 space-y-8 bg-white">
-            <div className="flex justify-between items-start">
-              <div className="space-y-2">
-                <DialogHeader>
-                  <DialogTitle className="text-3xl font-bold text-[#1e293b]">
-                    {property.title}
-                  </DialogTitle>
-                </DialogHeader>
-                <div className="flex items-center text-slate-500 gap-1">
-                  <MapPin className="h-4 w-4" />
-                  <span className="text-sm font-medium">
-                    {property.location}
-                  </span>
-                </div>
-                <div className="flex gap-2">
-                  <Badge
-                    variant="secondary"
-                    className="bg-slate-100 text-slate-600 font-semibold text-[10px]">
-                    {property.type}
-                  </Badge>
-                  <Badge className="bg-blue-50 text-blue-600 border-blue-100 font-semibold text-[10px]">
-                    {property.category}
-                  </Badge>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-3xl font-black text-[#22c55e]">
-                  {property.price}
-                </p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase">
-                  Sale Price
-                </p>
-              </div>
-            </div>
-
-            {/* Metrics Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <MetricCard
-                icon={<Square className="h-5 w-5 text-blue-500" />}
-                label="Total Area"
-                value={`${property.sqft} sqft`}
-              />
-              <MetricCard
-                icon={<TrendingUp className="h-5 w-5 text-orange-500" />}
-                label="Expected ROI"
-                value={property.roi}
-                subValue="annually"
-              />
-              <MetricCard
-                icon={<BarChart3 className="h-5 w-5 text-green-500" />}
-                label="Occupancy Rate"
-                value="95%"
-              />
-            </div>
-
+          <div className="grid grid-cols-3 gap-8 mt-6">
             {/* Description */}
-            <div className="space-y-3">
-              <h3 className="font-bold text-[#1e293b]">Description</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                This premium retail property offers exceptional investment
-                opportunities in the heart of {property.location}. With{" "}
-                {property.sqft} square feet of prime space, this property is
-                ideal for investors seeking strong returns in a growing market.
+            <div className="col-span-2 space-y-4">
+              <h4 className="font-bold text-slate-800">About this property</h4>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Experience ultimate coastal living in this stunning Malibu beach
+                house. Featuring panoramic ocean views, modern architectural
+                design, and direct private beach access. Perfect for families or
+                group getaways seeking luxury and tranquility.
               </p>
+
+              <h4 className="font-bold text-slate-800 pt-2">Amenities</h4>
+              <div className="grid grid-cols-2 gap-3">
+                <AmenityItem icon={<Wifi />} label="High-speed Wi-Fi" />
+                <AmenityItem icon={<Car />} label="Free Parking" />
+                <AmenityItem icon={<Wind />} label="Air Conditioning" />
+                <AmenityItem icon={<Tv />} label="Smart TV" />
+              </div>
             </div>
 
-            {/* Features List */}
-            <div className="space-y-4">
-              <h3 className="font-bold text-[#1e293b]">Key Features</h3>
-              <div className="grid grid-cols-2 gap-y-3 text-sm text-slate-600">
-                {[
-                  "Prime Location",
-                  "High Visibility",
-                  "Ample Parking",
-                  "Modern Infrastructure",
-                ].map((f) => (
-                  <div key={f} className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-[#22c55e]" /> {f}
+            <div className="col-span-1">
+              <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                <h4 className="text-xs font-bold text-slate-400 uppercase mb-4">
+                  Listed By
+                </h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-full bg-[#f26522]/10 flex items-center justify-center">
+                    <User className="h-5 w-5 text-[#f26522]" />
                   </div>
-                ))}
+                  <div>
+                    <p className="text-sm font-bold text-slate-800">
+                      Sarah Jenkins
+                    </p>
+                    <p className="text-[10px] text-slate-500">Verified Host</p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  className="w-full text-xs h-9 border-slate-200 hover:bg-white">
+                  Contact Host
+                </Button>
               </div>
             </div>
+          </div>
 
-            {/* Bottom Info Bar */}
-            <div className="bg-slate-50 border border-slate-100 rounded-lg p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="space-y-1">
-                <p className="text-[10px] font-bold text-slate-400 uppercase">
-                  Property ID
-                </p>
-                <p className="text-xs font-semibold text-slate-800">
-                  {property.id}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-[10px] font-bold text-slate-400 uppercase">
-                  Category
-                </p>
-                <p className="text-xs font-semibold text-slate-800">
-                  {property.type}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-[10px] font-bold text-slate-400 uppercase">
-                  Type
-                </p>
-                <p className="text-xs font-semibold text-slate-800">
-                  {property.category}
-                </p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-[10px] font-bold text-slate-400 uppercase">
-                  Status
-                </p>
-                <p className="text-xs font-bold text-green-600">Available</p>
-              </div>
-            </div>
-
-            {/* Final Action Buttons */}
-            <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6 border-t border-slate-100">
-              <Button
-                variant="outline"
-                className="px-8 h-12 text-slate-600"
-                onClick={onClose}>
-                Close
-              </Button>
-              <Button
-                variant="outline"
-                className="px-8 h-12 text-[#1e293b] gap-2"
-                onClick={() => onAction("visit")} // Triggers visit dialog
-              >
-                <Calendar className="h-4 w-4" /> Schedule Visit
-              </Button>
-              <Button
-                className="bg-[#f26522] hover:bg-[#d4561b] px-8 h-12 text-white font-bold"
-                onClick={() => onAction("offer")} // Triggers offer dialog
-              >
-                Make Offer
-              </Button>
-            </div>
+          {/* Footer Actions */}
+          <div className="flex justify-end gap-3 mt-8 pt-6 border-t border-slate-100">
+            <Button
+              variant="ghost"
+              onClick={onClose}
+              className="text-slate-500">
+              Close
+            </Button>
+            <Button className="bg-[#f26522] hover:bg-[#d4561b] px-10 font-bold text-white shadow-lg shadow-orange-100">
+              Book Now
+            </Button>
           </div>
         </div>
       </DialogContent>
@@ -213,21 +161,17 @@ export function PropertyDetailsDialog({
   );
 }
 
-function MetricCard({ icon, label, value, subValue }: any) {
+function AmenityItem({
+  icon,
+  label,
+}: {
+  icon: React.ReactNode;
+  label: string;
+}) {
   return (
-    <div className="flex items-center gap-4 p-4 border border-slate-100 rounded-xl bg-white shadow-sm">
-      <div className="bg-slate-50 p-2 rounded-lg">{icon}</div>
-      <div>
-        <p className="text-[10px] uppercase font-bold text-slate-400">
-          {label}
-        </p>
-        <p className="text-lg font-bold text-[#1e293b] leading-tight">
-          {value}
-        </p>
-        {subValue && (
-          <p className="text-[10px] text-slate-400 font-medium">{subValue}</p>
-        )}
-      </div>
+    <div className="flex items-center gap-2 text-slate-600">
+      <span className="[&>svg]:h-4 [&>svg]:w-4 text-[#f26522]">{icon}</span>
+      <span className="text-xs">{label}</span>
     </div>
   );
 }

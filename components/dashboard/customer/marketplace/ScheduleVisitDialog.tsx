@@ -1,8 +1,9 @@
 "use client";
 
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { visitSchema, VisitFormValues, Property } from "./schema";
+import * as z from "zod";
 import {
   Dialog,
   DialogContent,
@@ -11,67 +12,112 @@ import {
 } from "@/components/ui/dialog";
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { CalendarDays, Clock } from "lucide-react";
+
+const visitSchema = z.object({
+  visit_date: z.string().min(1, "Date is required"),
+  visit_time: z.string().min(1, "Time is required"),
+  additional_notes: z.string().optional(),
+});
 
 export function ScheduleVisitDialog({
-  property,
   isOpen,
   onClose,
 }: {
-  property: Property | null;
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const form = useForm<VisitFormValues>({ resolver: zodResolver(visitSchema) });
+  const form = useForm<z.infer<typeof visitSchema>>({
+    resolver: zodResolver(visitSchema),
+    defaultValues: { additional_notes: "" },
+  });
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[400px]">
+      <DialogContent className="max-w-md p-6 border-none shadow-2xl">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold">
-            Schedule Visit
+            Schedule a Visit
           </DialogTitle>
           <p className="text-sm text-slate-500">
-            Pick a date to view {property?.title}
+            Pick a preferred time to tour this property
           </p>
         </DialogHeader>
 
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit((d) => {
-              console.log(d);
-              onClose();
-            })}
-            className="space-y-6 pt-4">
+          <form className="space-y-4 mt-4">
             <FormField
-              control={form.control}
-              name="visitDate"
+              name="visit_date"
               render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="font-bold">Preferred Date</FormLabel>
+                <FormItem>
+                  <FormLabel className="text-xs font-bold uppercase text-slate-500">
+                    Preferred Date
+                  </FormLabel>
                   <FormControl>
-                    <Button
-                      variant="outline"
-                      className="h-12 bg-slate-50/50 justify-between font-normal">
-                      {field.value ? field.value.toDateString() : "mm/dd/yyyy"}
-                      <CalendarIcon className="h-4 w-4 opacity-50" />
-                    </Button>
-                    {/* Note: In a real app, wrap this Button in a Popover with a Calendar component */}
+                    <div className="relative">
+                      <CalendarDays className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+                      <Input type="date" className="pl-10" {...field} />
+                    </div>
                   </FormControl>
                 </FormItem>
               )}
             />
-            <Button
-              type="submit"
-              className="w-full bg-[#f26522] hover:bg-[#d4561b] h-12 text-white">
-              Schedule Visit
-            </Button>
+
+            <FormField
+              name="visit_time"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-xs font-bold uppercase text-slate-500">
+                    Preferred Time
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Clock className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
+                      <Input type="time" className="pl-10" {...field} />
+                    </div>
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              name="additional_notes"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-xs font-bold uppercase text-slate-500">
+                    Notes for the host
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Anything you'd like to mention?"
+                      className="resize-none"
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <div className="flex flex-col gap-2 pt-4">
+              <Button className="w-full bg-[#f26522] hover:bg-[#d4561b] h-11 font-bold">
+                Confirm Schedule
+              </Button>
+              <Button
+                variant="ghost"
+                type="button"
+                onClick={onClose}
+                className="text-slate-500 h-11">
+                Cancel
+              </Button>
+            </div>
           </form>
         </Form>
       </DialogContent>

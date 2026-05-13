@@ -14,6 +14,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { PropertyDetailsDialog } from "./PropertyDetailsDialog";
+import { ScheduleVisitDialog } from "./ScheduleVisitDialog";
+import { MakeOfferDialog } from "./MakeOfferDialog";
 
 // types/property.ts
 export interface Property {
@@ -259,23 +262,9 @@ const PropertyCard = ({ property }: { property: Property }) => (
             {property.tag}
           </Badge>
           <div className="flex gap-2 w-full sm:w-auto">
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex-1 sm:flex-none gap-2">
-              <FileText size={16} /> Details
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex-1 sm:flex-none gap-2">
-              <Calendar size={16} /> Schedule Visit
-            </Button>
-            <Button
-              size="sm"
-              className="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-700 gap-2">
-              <DollarSign size={16} /> Make Offer
-            </Button>
+            <PropertyDetailsDialog property={property} />
+            <ScheduleVisitDialog />
+            <MakeOfferDialog property={property} />
           </div>
         </div>
       </div>

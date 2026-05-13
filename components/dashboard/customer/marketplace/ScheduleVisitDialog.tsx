@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -20,7 +20,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { CalendarDays, Clock } from "lucide-react";
+import { Calendar, CalendarDays, Clock } from "lucide-react";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 
 const visitSchema = z.object({
   visit_date: z.string().min(1, "Date is required"),
@@ -28,20 +29,24 @@ const visitSchema = z.object({
   additional_notes: z.string().optional(),
 });
 
-export function ScheduleVisitDialog({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) {
+export function ScheduleVisitDialog() {
   const form = useForm<z.infer<typeof visitSchema>>({
     resolver: zodResolver(visitSchema),
     defaultValues: { additional_notes: "" },
   });
 
+  const [open, setIsOpen] = useState(false);
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          className="flex-1 sm:flex-none gap-2">
+          <Calendar size={16} /> Schedule Visit
+        </Button>
+      </DialogTrigger>
       <DialogContent className="max-w-md p-6 border-none shadow-2xl">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold">
@@ -113,7 +118,7 @@ export function ScheduleVisitDialog({
               <Button
                 variant="ghost"
                 type="button"
-                onClick={onClose}
+                onClick={() => setIsOpen(false)}
                 className="text-slate-500 h-11">
                 Cancel
               </Button>

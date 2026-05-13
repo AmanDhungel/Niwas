@@ -19,27 +19,36 @@ import {
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
-import { Info } from "lucide-react";
+import { DollarSign, Info } from "lucide-react";
+import { DialogTrigger } from "@radix-ui/react-dialog";
+import { useState } from "react";
 
 interface Props {
-  property: Property | null;
-  isOpen: boolean;
-  onClose: () => void;
+  property: any;
 }
 
-export function MakeOfferDialog({ property, isOpen, onClose }: Props) {
+export function MakeOfferDialog({ property }: Props) {
   const form = useForm<OfferFormValues>({
     resolver: zodResolver(offerSchema),
     defaultValues: { financingType: "Cash", contingencies: [] },
   });
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const onSubmit = (data: OfferFormValues) => {
     console.log("Offer Submitted:", data);
-    onClose();
+    setIsOpen(false);
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <Button
+          size="sm"
+          className="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-700 gap-2">
+          <DollarSign size={16} /> Make Offer
+        </Button>
+      </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden">
         <div className="p-8">
           <DialogHeader className="mb-4 text-left">
@@ -144,7 +153,7 @@ export function MakeOfferDialog({ property, isOpen, onClose }: Props) {
                 <Button
                   variant="outline"
                   type="button"
-                  onClick={onClose}
+                  onClick={() => setIsOpen(false)}
                   className="px-8 h-11">
                   Cancel
                 </Button>

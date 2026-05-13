@@ -36,7 +36,6 @@ import Image from "next/image";
 export default function OverviewPage() {
   return (
     <div className="w-full min-h-screen bg-white p-6 md:p-10 space-y-8">
-      {/* --- Header & Breadcrumbs --- */}
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Overview</h1>
         <Breadcrumb className="mt-2">
@@ -56,7 +55,6 @@ export default function OverviewPage() {
         </Breadcrumb>
       </div>
 
-      {/* --- Hero Banner --- */}
       <div className="relative overflow-hidden rounded-2xl bg-[#F26522] p-8 text-white">
         <div className="relative z-10 space-y-4">
           <h2 className="text-3xl font-bold">Welcome to RentChain!</h2>
@@ -79,13 +77,11 @@ export default function OverviewPage() {
             </Button>
           </div>
         </div>
-        {/* Decorative Background Element */}
         <div className="absolute right-10 top-1/2 -translate-y-1/2 opacity-20">
           <Zap className="h-32 w-32" strokeWidth={1} />
         </div>
       </div>
 
-      {/* --- Stats Row --- */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard
           title="Saved Properties"
@@ -113,33 +109,40 @@ export default function OverviewPage() {
         />
       </div>
 
-      {/* --- Quick Actions --- */}
       <section className="space-y-4">
         <div className="flex items-center gap-2 font-semibold text-slate-900">
           <Zap className="h-4 w-4 text-[#F26522]" />
           Quick Actions
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <QuickAction
-            icon={Search}
-            label="Browse Rentals"
-            color="text-orange-500"
-          />
-          <QuickAction
-            icon={Calendar}
-            label="Book Tour"
-            color="text-blue-500"
-          />
-          <QuickAction
-            icon={ShoppingCart}
-            label="Marketplace"
-            color="text-green-500"
-          />
-          <QuickAction
-            icon={Wrench}
-            label="Request Service"
-            color="text-purple-500"
-          />
+          <Link href={"/dashboard/customer/browse-rental"}>
+            <QuickAction
+              icon={Search}
+              label="Browse Rentals"
+              color="text-orange-500"
+            />
+          </Link>
+          <Link href={"/dashboard/customer/property-tour"}>
+            <QuickAction
+              icon={Calendar}
+              label="Book Tour"
+              color="text-blue-500"
+            />
+          </Link>
+          <Link href={"/dashboard/customer/marketplace"}>
+            <QuickAction
+              icon={ShoppingCart}
+              label="Marketplace"
+              color="text-green-500"
+            />
+          </Link>
+          <Link href={"/dashboard/customer/maintenance"}>
+            <QuickAction
+              icon={Wrench}
+              label="Request Service"
+              color="text-purple-500"
+            />
+          </Link>
         </div>
       </section>
 

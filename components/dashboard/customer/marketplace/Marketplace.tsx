@@ -79,8 +79,7 @@ export const MOCK_PROPERTIES: Property[] = [
 
 const MarketplacePage = () => {
   return (
-    <div className="min-h-screen  p-6 md:p-10 font-sans">
-      {/* Header */}
+    <div className="min-h-screen w-full  p-6 md:p-10 font-sans">
       <header className="mb-8">
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
           <Building2 size={14} /> / Marketplace

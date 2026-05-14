@@ -1,8 +1,6 @@
-import React from "react";
 import {
   Search,
   SlidersHorizontal,
-  PlusCircle,
   DollarSign,
   FileText,
   TrendingUp,
@@ -83,8 +81,7 @@ const SERVICES = [
 
 export default function MaintenancePage() {
   return (
-    <div className="min-h-screen bg-slate-50/50 p-6 md:p-10 lg:p-12 font-sans text-slate-900">
-      {/* Header Section */}
+    <div className="min-h-screen p-6 md:p-10 lg:p-12 font-sans text-slate-900">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
@@ -100,7 +97,6 @@ export default function MaintenancePage() {
         <RequestMaintenanceForm />
       </div>
 
-      {/* Top Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {STATS.map((stat, idx) => (
           <Card key={idx} className="border-none shadow-sm overflow-hidden">
@@ -235,7 +231,6 @@ export default function MaintenancePage() {
                 </div>
               </div>
 
-              {/* Footer Actions */}
               <div className="flex justify-end gap-2 mt-2">
                 <Button
                   variant="outline"

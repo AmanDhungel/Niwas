@@ -27,17 +27,17 @@ import {
 
 // Base URL: /dashboard/customer
 const navItems = [
-  { title: "Profile", icon: User2, url: "/dashboard/customer/profile" },
+  { title: "Profile", icon: User2, url: "/dashboard/customer/profile-page" },
   { title: "Overview", icon: Activity, url: "/dashboard/customer/overview" },
   {
     title: "Browse Rentals",
     icon: Search,
-    url: "/dashboard/customer/browse-rentals",
+    url: "/dashboard/customer/browse-rental",
   },
   {
     title: "Property Tours",
     icon: CalendarDays,
-    url: "/dashboard/customer/property-tours",
+    url: "/dashboard/customer/property-tour",
   },
   {
     title: "Marketplace",
@@ -97,13 +97,13 @@ export function CustomerSidebar() {
                       flex items-center gap-3 px-3 py-6 text-[15px] transition-colors
                       ${
                         isActive
-                          ? "bg-[#E9ECEF] text-slate-900 font-bold hover:bg-[#E9ECEF]"
+                          ? "bg-orange-500! text-white! font-bold hover:bg-[#E9ECEF]"
                           : "text-slate-600 hover:bg-slate-50"
                       }
                     `}>
                     <Link href={item.url}>
                       <item.icon
-                        className={`h-5 w-5 ${isActive ? "text-slate-900" : "text-slate-400"}`}
+                        className={`h-5 w-5 ${isActive ? "text-white" : "text-slate-400"}`}
                       />
                       <span>{item.title}</span>
                     </Link>

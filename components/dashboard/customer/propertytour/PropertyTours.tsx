@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils copy";
 
 export default function PropertyTours() {
   return (
-    <div className="p-8  space-y-8  min-h-screen">
+    <div className="p-8  space-y-8 w-full  min-h-screen">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Property Tours</h1>

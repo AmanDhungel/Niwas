@@ -15,6 +15,8 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { SignupForm } from "./Auth/Signup";
+import LoginPage from "./Auth/Login";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -79,27 +81,9 @@ export default function Navbar() {
           </NavigationMenu>
 
           <div className="hidden md:flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-gray-700 font-medium gap-1.5"
-              asChild>
-              <Link href="/login">
-                <Lock className="h-3.5 w-3.5 text-gray-400" />
-                Login
-              </Link>
-            </Button>
+            <LoginPage />
 
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-gray-700 font-medium gap-1"
-              asChild>
-              <Link href="/signup">
-                <Plus className="h-3.5 w-3.5" />
-                Sign Up
-              </Link>
-            </Button>
+            <SignupForm />
 
             <Button
               size="sm"

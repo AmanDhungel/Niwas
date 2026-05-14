@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Activity,
   CalendarCheck2,
@@ -63,10 +63,13 @@ const navItems = [
 
 export function CustomerSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <Sidebar variant="sidebar" className="border-r-0">
-      <SidebarHeader className="px-6 py-8">
+      <SidebarHeader
+        className="px-6 py-8 cursor-pointer"
+        onClick={() => router.push("/")}>
         <div className="flex items-center gap-1">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#F26522]">
             <span className="text-xl font-bold text-white italic">R</span>

@@ -30,8 +30,20 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import {
+  useGetLongTermOccupany,
+  useGetShortTermOccupany,
+} from "@/services/occupancy.service";
 
 export default function OverviewPage() {
+  const { data: LongTerm, isLoading: LongTermloading } =
+    useGetLongTermOccupany();
+  const { data: shortTerm, isLoading: ShortTermloading } =
+    useGetShortTermOccupany();
+
+  console.log(LongTerm, shortTerm);
+
+  if (LongTermloading || ShortTermloading) return <div>Loading...</div>;
   return (
     <div className="w-full min-h-screen bg-white p-6 md:p-10 space-y-8">
       <div>
@@ -158,17 +170,20 @@ export default function OverviewPage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <RentalCard
-            title="Modern Downtown Apartment"
-            location="Manhattan, NY"
-            price="150"
-            rating="4.9"
-            reviews="127"
-            beds={2}
-            baths={2}
-            sqft={950}
-            img="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800"
-          />
+          {LongTerm?.data.map((rental) => (
+            <RentalCard
+              key={rental?._id}
+              title={rental?.property?.basic_info?.name ?? "N/A"}
+              location={rental?.property?.location?.address_line_1 ?? "N/A"}
+              price="150"
+              rating="4.9"
+              reviews="127"
+              beds={2}
+              baths={2}
+              sqft={950}
+              img="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800"
+            />
+          ))}
           <RentalCard
             title="Luxury Beach House"
             location="Miami, FL"
@@ -280,7 +295,7 @@ function RentalCard({
   img,
 }: any) {
   return (
-    <Card className="overflow-hidden border-slate-100 shadow-none group">
+    <Card className="overflow-hidden border-slate-100 shadow-none group pt-0">
       <div className="relative h-48 w-full overflow-hidden">
         <Image
           width={1000}

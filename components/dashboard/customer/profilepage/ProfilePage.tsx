@@ -26,8 +26,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import AccountSettingsDialog from "./Form/AccountSettingsDialog";
+import useAuthStore from "@/context/User";
+import { formatDate } from "date-fns";
 
 export default function ProfilePage() {
+  const { user } = useAuthStore();
   return (
     <div className="w-full min-h-screen bg-white p-8">
       <div className="mb-8">
@@ -66,7 +69,7 @@ export default function ProfilePage() {
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <Avatar className="h-24 w-24 border-none">
               <AvatarFallback className="bg-[#F26522] text-white text-3xl font-bold">
-                GU
+                {user?.user_name?.charAt(0)}
               </AvatarFallback>
             </Avatar>
 
@@ -74,7 +77,7 @@ export default function ProfilePage() {
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
                   <h3 className="text-2xl font-bold text-slate-900">
-                    Guest User
+                    {user?.user_name}
                   </h3>
                   <Badge
                     variant="outline"
@@ -83,26 +86,26 @@ export default function ProfilePage() {
                   </Badge>
                 </div>
                 <p className="text-sm text-slate-500">
-                  Guest Account • Member since 2025-01-28
+                  Member since{" "}
+                  {user?.createdAt && formatDate(user?.createdAt, "yyyy-MM-dd")}
                 </p>
               </div>
 
               <div className="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-2 pt-2">
                 <div className="flex items-center gap-2 text-sm text-slate-500">
                   <Mail className="h-4 w-4 text-slate-400" />
-                  guest@example.com
+                  {user?.user_email}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-slate-500">
+                {/* <div className="flex items-center gap-2 text-sm text-slate-500">
                   <Phone className="h-4 w-4 text-slate-400" />
-                  +1 234 567 8900
-                </div>
+                  {user?.user_email}
+                </div> */}
               </div>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* --- Stats Grid --- */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         {[
           {

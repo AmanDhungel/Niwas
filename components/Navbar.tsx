@@ -17,10 +17,12 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SignupForm } from "./Auth/Signup";
 import LoginPage from "./Auth/Login";
+import useAuthStore from "@/context/User";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { user } = useAuthStore();
 
   const navLinks = [
     { label: "Home", href: "/", active: pathname === "/" },
@@ -31,11 +33,7 @@ export default function Navbar() {
       badge: "new",
     },
     { label: "For Owners", href: "/owners", active: pathname === "/owners" },
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-      active: pathname === "/dashboard",
-    },
+
     { label: "Support", href: "/support", active: pathname === "/support" },
   ];
 
@@ -77,13 +75,32 @@ export default function Navbar() {
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
+
+              {user && (
+                <NavigationMenuItem>
+                  <NavigationMenuLink
+                    href={`/dashboard/customer/profile-page`}
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "relative text-sm font-medium h-9 px-4 rounded-md transition-colors",
+                      pathname === "/dashboard/customer/profile-page"
+                        ? "bg-[#E8540A] text-white hover:bg-[#d14a09] hover:text-white focus:bg-[#E8540A] focus:text-white"
+                        : "text-gray-700 hover:text-gray-900 hover:bg-gray-100 bg-transparent",
+                    )}>
+                    Dashboard
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              )}
             </NavigationMenuList>
           </NavigationMenu>
 
           <div className="hidden md:flex items-center gap-2">
-            <LoginPage />
-
-            <SignupForm />
+            {!user && (
+              <>
+                <LoginPage />
+                <SignupForm />
+              </>
+            )}
 
             <Button
               size="sm"

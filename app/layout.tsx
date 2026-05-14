@@ -39,9 +39,9 @@ export default function RootLayout({
         inter.variable,
       )}>
       <Suspense fallback={<div>Loading...</div>}>
-        <RootLayoutProvider>
-          <body className="min-h-full flex flex-col">{children}</body>
-        </RootLayoutProvider>
+        <body className="min-h-full flex flex-col">
+          <RootLayoutProvider>{children}</RootLayoutProvider>
+        </body>
       </Suspense>
     </html>
   );

@@ -1,24 +1,23 @@
 "use client";
+
+import dynamic from "next/dynamic";
 import TanStackProvider from "./TanStackProvider";
 import { LoadingBar } from "./Progress";
 import { Toaster } from "./ui/sonner";
+import { useVerifyToken } from "@/services/auth";
 import { usePathname } from "next/navigation";
-import Navbar from "./Navbar";
-import { CustomerSidebar } from "./dashboard/customer/Sidebar";
-import { SidebarProvider } from "./ui/sidebar";
+import { useEffect } from "react";
+import useAuthStore from "@/context/User";
+import { useRouter } from "next/router";
+
+const DynamicLayout = dynamic(() => import("./DynamicLayoutContent"), {
+  ssr: false,
+});
 
 const RootLayoutProvider = ({ children }: any) => {
-  const pathname = usePathname();
-  const isDashboard = pathname.startsWith("/dashboard");
-
   return (
     <TanStackProvider>
-      <SidebarProvider>
-        <div className={`${isDashboard ? "flex w-full" : ""}`}>
-          {!isDashboard ? <Navbar /> : <CustomerSidebar />}
-          {children}
-        </div>
-      </SidebarProvider>
+      <DynamicLayout>{children}</DynamicLayout>
       <LoadingBar />
       <Toaster />
     </TanStackProvider>

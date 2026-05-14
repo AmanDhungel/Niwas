@@ -170,31 +170,28 @@ export default function OverviewPage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {LongTerm?.data.map((rental) => (
+          {shortTerm?.data.map((rental) => (
             <RentalCard
               key={rental?._id}
               title={rental?.property?.basic_info?.name ?? "N/A"}
               location={rental?.property?.location?.address_line_1 ?? "N/A"}
-              price="150"
+              price={
+                rental?.property?.publishing?.pricing_configuration?.rent
+                  ?.amount
+                  ? (
+                      rental.property.publishing.pricing_configuration.rent
+                        .amount / 30
+                    ).toFixed(2)
+                  : "N/A"
+              }
               rating="4.9"
               reviews="127"
-              beds={2}
-              baths={2}
-              sqft={950}
-              img="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800"
+              // beds={2}
+              // baths={2}
+              sqft={rental?.property?.property_details?.room_size ?? "N/A"}
+              img={rental?.property?.media_and_files.property_photos[0] ?? ""}
             />
           ))}
-          <RentalCard
-            title="Luxury Beach House"
-            location="Miami, FL"
-            price="350"
-            rating="5"
-            reviews="89"
-            beds={4}
-            baths={3}
-            sqft={2500}
-            img="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800"
-          />
         </div>
       </section>
 
@@ -303,6 +300,7 @@ function RentalCard({
           src={img}
           alt={title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          onError={(e: any) => (e.target.src = "/no-image.png")}
         />
         <div className="absolute top-3 left-3">
           <Button
@@ -326,12 +324,12 @@ function RentalCard({
           </p>
         </div>
         <div className="flex items-center gap-4 text-xs text-slate-500">
-          <span className="flex items-center gap-1">
+          {/* <span className="flex items-center gap-1">
             <BedDouble className="h-3 w-3" /> {beds}
           </span>
           <span className="flex items-center gap-1">
             <Bath className="h-3 w-3" /> {baths}
-          </span>
+          </span> */}
           <span className="flex items-center gap-1">
             <Square className="h-3 w-3" /> {sqft} sqft
           </span>
@@ -341,11 +339,11 @@ function RentalCard({
             ${price}
             <span className="text-sm font-normal text-slate-400">/night</span>
           </div>
-          <div className="flex items-center gap-1 text-sm font-bold">
+          {/* <div className="flex items-center gap-1 text-sm font-bold">
             <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
             {rating}{" "}
             <span className="font-normal text-slate-400">({reviews})</span>
-          </div>
+          </div> */}
         </div>
       </CardContent>
     </Card>

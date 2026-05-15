@@ -12,11 +12,11 @@ export const useGetPropertyTour = () => {
 };
 
 export const useCreatePropertyTour = () => {
-  return useMutation<ApiResponseType<any>, any, FormData>({
+  return useMutation<ApiResponseType<any>, any, any>({
     mutationKey: ["createLongTermOccupany"],
-    mutationFn: (data: FormData) =>
-      Post<FormData, ApiResponseType<any>>({
-        url: "/client_api/ecommerce_user/profile/update",
+    mutationFn: (data: any) =>
+      Post<any, ApiResponseType<any>>({
+        url: "/client_api/ecommerce_property_tour/create",
         data: data,
       }),
   });

@@ -4,7 +4,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
-import { CalendarIcon, Info, X } from "lucide-react";
+import { CalendarIcon, Info, Loader2 } from "lucide-react"; // Imported Loader2
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -39,6 +39,8 @@ import {
 } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { useGetLongTermOccupany } from "@/services/occupancy.service";
+import { useCreatePropertyTour } from "@/services/propertytour.service";
 
 const formSchema = z.object({
   propertyId: z.string().min(1, "Please select a property"),
@@ -48,20 +50,38 @@ const formSchema = z.object({
   notes: z.string().optional(),
 });
 
+type FormValues = z.infer<typeof formSchema>;
+
 export function RequestTourDialog() {
   const [open, setOpen] = useState(false);
+  const { data } = useGetLongTermOccupany();
+  const { mutate, isPending } = useCreatePropertyTour();
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      propertyId: "",
       tourType: "in-person",
+      preferredTime: "",
       notes: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    setOpen(false);
+  function onSubmit(values: FormValues) {
+    const payload = {
+      property: values.propertyId,
+      type: values.tourType.replace("-", "_"),
+      preferred_date: format(values.preferredDate, "yyyy-MM-dd"),
+      preferred_time: values.preferredTime,
+      additional_notes: values.notes || "",
+    };
+
+    mutate(payload, {
+      onSuccess: () => {
+        setOpen(false);
+        form.reset();
+      },
+    });
   }
 
   return (
@@ -83,20 +103,6 @@ export function RequestTourDialog() {
             </p>
           </DialogHeader>
 
-          {/* Property Highlight Card */}
-          <div className="bg-[#fff1eb] p-4 rounded-lg flex justify-between items-center mb-8 border border-[#ffe4d6]">
-            <div>
-              <p className="font-bold text-slate-900">Luxury Beach House</p>
-              <p className="text-xs text-slate-500">Property ID: STR-002</p>
-            </div>
-            <div className="text-right">
-              <p className="text-2xl font-black text-[#f26522]">$350</p>
-              <p className="text-[10px] text-slate-500 font-semibold uppercase">
-                per night
-              </p>
-            </div>
-          </div>
-
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               {/* Select Property */}
@@ -108,21 +114,20 @@ export function RequestTourDialog() {
                     <FormLabel className="font-bold text-slate-700">
                       Select Property
                     </FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger className="h-12 bg-slate-50/50">
-                          <SelectValue placeholder="Select" />
+                          <SelectValue placeholder="Select a property" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="STR-002">
-                          Luxury Beach House
-                        </SelectItem>
-                        <SelectItem value="STR-001">
-                          Spacious 3BR Family Home
-                        </SelectItem>
+                        {data?.data?.map((item: any) => (
+                          <SelectItem
+                            value={item.property._id}
+                            key={item.property._id}>
+                            {item.property.basic_info.name}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -142,7 +147,7 @@ export function RequestTourDialog() {
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
-                        defaultValue={field.value}
+                        value={field.value}
                         className="flex space-x-4">
                         <FormItem className="flex items-center space-x-2 space-y-0">
                           <FormControl>
@@ -225,16 +230,17 @@ export function RequestTourDialog() {
                       </FormLabel>
                       <Select
                         onValueChange={field.onChange}
-                        defaultValue={field.value}>
+                        value={field.value}>
                         <FormControl>
                           <SelectTrigger className="h-12 bg-slate-50/50">
-                            <SelectValue placeholder="Select" />
+                            <SelectValue placeholder="Select time" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="10:00">10:00 AM</SelectItem>
-                          <SelectItem value="14:00">02:00 PM</SelectItem>
-                          <SelectItem value="16:00">04:00 PM</SelectItem>
+                          {/* Matches values explicitly to target payload structure strings */}
+                          <SelectItem value="10:30 AM">10:30 AM</SelectItem>
+                          <SelectItem value="02:00 PM">02:00 PM</SelectItem>
+                          <SelectItem value="04:00 PM">04:00 PM</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -254,6 +260,7 @@ export function RequestTourDialog() {
                     </FormLabel>
                     <FormControl>
                       <Textarea
+                        placeholder="Ex: I would like to see the parking area too."
                         className="bg-slate-50/50 min-h-[100px] resize-none"
                         {...field}
                       />
@@ -283,13 +290,21 @@ export function RequestTourDialog() {
                   type="button"
                   variant="outline"
                   onClick={() => setOpen(false)}
+                  disabled={isPending}
                   className="px-8 h-12">
                   Cancel
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-[#f26522] hover:bg-[#d4561b] px-8 h-12">
-                  Submit Request
+                  disabled={isPending}
+                  className="bg-[#f26522] hover:bg-[#d4561b] px-8 h-12 text-white min-w-[160px]">
+                  {isPending ? (
+                    <span className="flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 animate-spin" /> Submitting...
+                    </span>
+                  ) : (
+                    "Submit Request"
+                  )}
                 </Button>
               </div>
             </form>

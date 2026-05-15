@@ -41,8 +41,6 @@ export default function OverviewPage() {
   const { data: shortTerm, isLoading: ShortTermloading } =
     useGetShortTermOccupany();
 
-  console.log(LongTerm, shortTerm);
-
   if (LongTermloading || ShortTermloading) return <div>Loading...</div>;
   return (
     <div className="w-full min-h-screen bg-white p-6 md:p-10 space-y-8">
@@ -280,7 +278,7 @@ function QuickAction({ icon: Icon, label, color }: any) {
   );
 }
 
-function RentalCard({
+export function RentalCard({
   title,
   location,
   price,

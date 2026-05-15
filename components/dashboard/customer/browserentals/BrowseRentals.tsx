@@ -30,6 +30,11 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import {
+  useGetLongTermOccupany,
+  useGetShortTermOccupany,
+} from "@/services/occupancy.service";
+import { RentalCard } from "../overview/OverviewPage";
 
 // --- Mock Data ---
 const RENTALS = [
@@ -120,8 +125,12 @@ export default function BrowseRentals() {
     );
   }, [searchQuery]);
 
-  const shortTerm = filteredRentals.filter((r) => r.type === "short");
-  const longTerm = filteredRentals.filter((r) => r.type === "long");
+  const { data: LongTerm, isLoading: LongTermloading } =
+    useGetLongTermOccupany();
+  const { data: shortTerm, isLoading: ShortTermloading } =
+    useGetShortTermOccupany();
+
+  if (LongTermloading || ShortTermloading) return <div>Loading...</div>;
 
   return (
     <div className="w-full min-h-screen bg-white p-6 md:p-10 space-y-8">
@@ -181,10 +190,29 @@ export default function BrowseRentals() {
           Short-term Rentals
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {shortTerm.map((rental) => (
-            <ShortTermCard key={rental.id} rental={rental} />
+          {shortTerm?.data.map((rental) => (
+            <RentalCard
+              key={rental?._id}
+              title={rental?.property?.basic_info?.name ?? "N/A"}
+              location={rental?.property?.location?.address_line_1 ?? "N/A"}
+              price={
+                rental?.property?.publishing?.pricing_configuration?.rent
+                  ?.amount
+                  ? (
+                      rental.property.publishing.pricing_configuration.rent
+                        .amount / 30
+                    ).toFixed(2)
+                  : "N/A"
+              }
+              rating="4.9"
+              reviews="127"
+              // beds={2}
+              // baths={2}
+              sqft={rental?.property?.property_details?.room_size ?? "N/A"}
+              img={rental?.property?.media_and_files.property_photos[0] ?? ""}
+            />
           ))}
-          {shortTerm.length === 0 && (
+          {shortTerm?.data.length === 0 && (
             <p className="text-slate-400 italic">
               No short-term rentals found matching your search.
             </p>
@@ -198,10 +226,10 @@ export default function BrowseRentals() {
           Long-term Rentals
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {longTerm.map((rental) => (
+          {LongTerm?.data.map((rental) => (
             <LongTermCard key={rental.id} rental={rental} />
           ))}
-          {longTerm.length === 0 && (
+          {LongTerm?.data.length === 0 && (
             <p className="text-slate-400 italic">
               No long-term rentals found matching your search.
             </p>
@@ -295,14 +323,15 @@ function ShortTermCard({ rental }: any) {
 
 function LongTermCard({ rental }: any) {
   return (
-    <Card className="overflow-hidden border-slate-100 shadow-sm flex flex-col md:flex-row group hover:shadow-md transition-shadow">
+    <Card className="overflow-hidden border-slate-100 shadow-sm flex p-0 flex-col md:flex-row group hover:shadow-md transition-shadow">
       <div className="relative w-full md:w-56 h-48 md:h-auto">
         <Image
           width={1000}
           height={1000}
-          src={rental.img}
+          src={rental?.property?.media_and_files.property_photos[0] ?? ""}
           alt={rental.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover min-w-30"
+          onError={(e: any) => (e.target.src = "/no-image.png")}
         />
       </div>
       <CardContent className="p-5 flex-1 space-y-4 relative">
@@ -314,40 +343,42 @@ function LongTermCard({ rental }: any) {
         </Button>
         <div className="space-y-1">
           <h3 className="font-bold text-slate-900 text-lg leading-tight">
-            {rental.title}
+            {rental?.property?.basic_info?.name ?? "N/A"}
           </h3>
           <p className="text-sm text-slate-500 flex items-center gap-1">
-            <MapPin className="h-3 w-3" /> {rental.location}
+            <MapPin className="h-3 w-3" />{" "}
+            {rental?.property?.location?.address_line_1 ?? "N/A"}
           </p>
         </div>
         <div className="flex items-center gap-4 text-xs text-slate-500">
-          <span className="flex items-center gap-1">
+          {/* <span className="flex items-center gap-1">
             <BedDouble className="h-3 w-3" /> {rental.beds}
           </span>
           <span className="flex items-center gap-1">
             <Bath className="h-3 w-3" /> {rental.baths}
-          </span>
+          </span> */}
           <span className="flex items-center gap-1">
-            <Square className="h-3 w-3" /> {rental.sqft} sqft
+            <Square className="h-3 w-3" />{" "}
+            {rental?.property?.property_details?.room_size ?? "N/A"} sqft
           </span>
         </div>
-        <Badge
+        {/* <Badge
           variant="secondary"
           className="bg-slate-50 text-slate-500 font-medium text-[11px] px-2 py-0 h-6 border-slate-100">
           {rental.duration}
-        </Badge>
+        </Badge> */}
         <div className="flex items-center justify-between pt-2 border-t border-slate-50">
           <div className="text-xl font-bold text-[#F26522]">
-            ${rental.price}
+            ${rental?.property?.publishing?.pricing_configuration?.rent?.amount}
             <span className="text-sm font-normal text-slate-400">/month</span>
           </div>
-          <div className="flex items-center gap-1 text-sm font-bold">
+          {/* <div className="flex items-center gap-1 text-sm font-bold">
             <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
             {rental.rating}{" "}
             <span className="font-normal text-slate-400">
               ({rental.reviews})
             </span>
-          </div>
+          </div> */}
         </div>
         <div className="flex gap-3 pt-2">
           <Button

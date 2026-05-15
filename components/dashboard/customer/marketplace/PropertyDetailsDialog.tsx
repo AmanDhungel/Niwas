@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -17,11 +18,8 @@ import {
   Square,
   TrendingUp,
   BarChart3,
-  Calendar,
   FileText,
 } from "lucide-react";
-import { Property } from "./schema";
-import { cn } from "@/lib/utils";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { ScheduleVisitDialog } from "./ScheduleVisitDialog";
 import { MakeOfferDialog } from "./MakeOfferDialog";
@@ -38,12 +36,14 @@ export function PropertyDetailsDialog({
   const [open, setIsOpen] = useState(false);
   if (!property) return null;
 
+  console.log(property);
+
   return (
     <Dialog open={open} onOpenChange={setIsOpen}>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="bg-white text-black  rounded-md px-6">
+          className="bg-white text-black rounded-md px-6">
           <FileText size={16} /> Details
         </Button>
       </DialogTrigger>
@@ -61,11 +61,17 @@ export function PropertyDetailsDialog({
 
         <div className="overflow-y-auto max-h-[95vh]">
           {/* Property Image Hero */}
-          <div className="relative h-[350px] w-full">
-            <img
-              src={property.image}
-              alt={property.title}
-              className="h-full w-full object-cover"
+          <div className="relative h-[350px] w-full bg-slate-100">
+            <Image
+              src={
+                property?.media_and_files?.property_photos?.[0] ||
+                "/no-image.png"
+              }
+              width={1000}
+              height={1000}
+              alt={property?.basic_info?.name || "Property Image"}
+              className="w-full h-full object-cover"
+              onError={(e: any) => (e.target.src = "/no-image.png")}
             />
             <div className="absolute top-4 left-4">
               <Badge className="bg-[#f26522] border-none px-3 py-1 text-xs uppercase font-bold">
@@ -75,36 +81,44 @@ export function PropertyDetailsDialog({
           </div>
 
           <div className="p-8 space-y-8 bg-white">
-            <div className="flex justify-between items-start">
+            <div className="flex justify-between items-start gap-4">
               <div className="space-y-2">
                 <DialogHeader>
                   <DialogTitle className="text-3xl font-bold text-[#1e293b]">
-                    {property.title}
+                    {property?.basic_info?.name}
                   </DialogTitle>
                 </DialogHeader>
                 <div className="flex items-center text-slate-500 gap-1">
                   <MapPin className="h-4 w-4" />
                   <span className="text-sm font-medium">
-                    {property.location}
+                    {property?.location?.address_line_1}
                   </span>
                 </div>
                 <div className="flex gap-2">
-                  <Badge
-                    variant="secondary"
-                    className="bg-slate-100 text-slate-600 font-semibold text-[10px]">
-                    {property.type}
-                  </Badge>
-                  <Badge className="bg-blue-50 text-blue-600 border-blue-100 font-semibold text-[10px]">
-                    {property.category}
-                  </Badge>
+                  {property?.basic_info?.type && (
+                    <Badge
+                      variant="secondary"
+                      className="bg-slate-100 text-slate-600 font-semibold text-[10px]">
+                      {property.basic_info.type}
+                    </Badge>
+                  )}
+                  {property?.basic_info?.property_category && (
+                    <Badge className="bg-blue-50 text-blue-600 border-blue-100 font-semibold text-[10px]">
+                      {property.basic_info.property_category}
+                    </Badge>
+                  )}
                 </div>
               </div>
-              <div className="text-right">
+              <div className="text-right shrink-0">
                 <p className="text-3xl font-black text-[#22c55e]">
-                  {property.price}
+                  {property?.financial_info?.sale_price || property?.price}
                 </p>
                 <p className="text-[10px] font-bold text-slate-400 uppercase">
                   Sale Price
+                </p>
+                <p className="text-3xl font-black text-[#f59e0b]">
+                  {property?.publishing?.pricing_configuration?.rent?.amount ??
+                    "N/A"}
                 </p>
               </div>
             </div>
@@ -114,18 +128,22 @@ export function PropertyDetailsDialog({
               <MetricCard
                 icon={<Square className="h-5 w-5 text-blue-500" />}
                 label="Total Area"
-                value={`${property.sqft} sqft`}
+                value={`${property?.property_details?.room_size || property?.sqft || 0} sqft`}
               />
               <MetricCard
                 icon={<TrendingUp className="h-5 w-5 text-orange-500" />}
                 label="Expected ROI"
-                value={property.roi}
+                value={
+                  property?.financial_info?.expected_roi ||
+                  property?.roi ||
+                  "N/A"
+                }
                 subValue="annually"
               />
               <MetricCard
                 icon={<BarChart3 className="h-5 w-5 text-green-500" />}
                 label="Occupancy Rate"
-                value="95%"
+                value={property?.financial_info?.occupancy_rate || "N/A"}
               />
             </div>
 
@@ -133,29 +151,26 @@ export function PropertyDetailsDialog({
             <div className="space-y-3">
               <h3 className="font-bold text-[#1e293b]">Description</h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                This premium retail property offers exceptional investment
-                opportunities in the heart of {property.location}. With{" "}
-                {property.sqft} square feet of prime space, this property is
-                ideal for investors seeking strong returns in a growing market.
+                {property?.basic_info?.description ||
+                  `This premium property offers exceptional investment opportunities. With ${
+                    property?.area_info?.total_sqft || property?.sqft || 0
+                  } square feet of prime space, this property is ideal for investors seeking strong returns.`}
               </p>
             </div>
 
             {/* Features List */}
-            <div className="space-y-4">
-              <h3 className="font-bold text-[#1e293b]">Key Features</h3>
-              <div className="grid grid-cols-2 gap-y-3 text-sm text-slate-600">
-                {[
-                  "Prime Location",
-                  "High Visibility",
-                  "Ample Parking",
-                  "Modern Infrastructure",
-                ].map((f) => (
-                  <div key={f} className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-[#22c55e]" /> {f}
-                  </div>
-                ))}
+            {property?.features_and_amenities && (
+              <div className="space-y-4">
+                <h3 className="font-bold text-[#1e293b]">Key Features</h3>
+                <div className="grid grid-cols-2 gap-y-3 text-sm text-slate-600">
+                  {property.features_and_amenities.map((f: string) => (
+                    <div key={f} className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-[#22c55e]" /> {f}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Bottom Info Bar */}
             <div className="bg-slate-50 border border-slate-100 rounded-lg p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -164,7 +179,7 @@ export function PropertyDetailsDialog({
                   Property ID
                 </p>
                 <p className="text-xs font-semibold text-slate-800">
-                  {property.id}
+                  {property?.id || property?._id}
                 </p>
               </div>
               <div className="space-y-1">
@@ -172,7 +187,7 @@ export function PropertyDetailsDialog({
                   Category
                 </p>
                 <p className="text-xs font-semibold text-slate-800">
-                  {property.type}
+                  {property?.basic_info?.property_category || "N/A"}
                 </p>
               </div>
               <div className="space-y-1">
@@ -180,21 +195,23 @@ export function PropertyDetailsDialog({
                   Type
                 </p>
                 <p className="text-xs font-semibold text-slate-800">
-                  {property.category}
+                  {property?.basic_info?.type || "N/A"}
                 </p>
               </div>
               <div className="space-y-1">
                 <p className="text-[10px] font-bold text-slate-400 uppercase">
                   Status
                 </p>
-                <p className="text-xs font-bold text-green-600">Available</p>
+                <p className="text-xs font-bold text-green-600 uppercase">
+                  {property?.status || "Available"}
+                </p>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6 border-t border-slate-100">
               <Button
                 variant="outline"
-                className="px-8  text-slate-600"
+                className="px-8 text-slate-600"
                 onClick={() => setIsOpen(false)}>
                 Close
               </Button>

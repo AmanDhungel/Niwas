@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -7,32 +8,111 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useGetProfile, useUpdateProfile } from "@/services/profile.service";
+import { useRouter } from "next/navigation";
 
 const profileSchema = z.object({
-  full_name: z.string().min(2),
-  email: z.string().email(),
-  phone_number: z.string().optional(),
-  address: z.string().optional(),
+  user_name: z.string().min(2, "Name is required"),
+  user_email: z.string().email("Invalid email address"),
+  user_phone: z.string().optional(),
+  address_line: z.string().optional(),
+  country: z.string().optional(),
   state: z.string().optional(),
-  zip_code: z.string().optional(),
+  city: z.string().optional(),
+  postal_code: z.string().optional(),
+  photo: z.any().optional(),
 });
 
+type ProfileFormValues = z.infer<typeof profileSchema>;
+
 export default function ProfileForm() {
-  const form = useForm<z.infer<typeof profileSchema>>({
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [previewUrl, setPreviewUrl] = useState<string>("");
+  const { mutate, isPending } = useUpdateProfile();
+  const { data } = useGetProfile();
+  console.log("data", data?.data);
+  const router = useRouter();
+
+  const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
-    defaultValues: { full_name: "", email: "" },
+    defaultValues: {
+      user_name: "",
+      user_email: "",
+      user_phone: "",
+      address_line: "",
+      country: "Nepal",
+      state: "",
+      city: "",
+      postal_code: "",
+    },
   });
+
+  useEffect(() => {
+    if (data?.data) {
+      form.setValue("user_name", data?.data?.user_name);
+      form.setValue("user_email", data?.data?.user_email);
+      form.setValue("user_phone", data?.data?.user_phone);
+      form.setValue("address_line", data?.data?.address_line);
+      form.setValue("country", data?.data?.country);
+      form.setValue("state", data?.data?.state);
+      form.setValue("city", data?.data?.city);
+      form.setValue("postal_code", data?.data?.postal_code);
+      setTimeout(() => {
+        setPreviewUrl(data?.data?.photo);
+      }, 0);
+    }
+  });
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 4 * 1024 * 1024) {
+        alert("Image must be below 4MB");
+        return;
+      }
+      form.setValue("photo", file);
+      setPreviewUrl(URL.createObjectURL(file));
+    }
+  };
+
+  const onSubmit = async (data: ProfileFormValues) => {
+    try {
+      const formData = new FormData();
+
+      Object.entries(data).forEach(([key, value]) => {
+        if (key !== "photo" && value !== undefined) {
+          formData.append(key, value);
+        }
+      });
+
+      if (data.photo) {
+        formData.append("photo", data.photo);
+      }
+
+      mutate(formData, {
+        onSuccess: () => {
+          router.refresh();
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Error updating profile");
+    }
+  };
 
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6  mx-auto p-4">
         <div className="flex items-center gap-6 p-6 border rounded-lg">
           <Avatar className="h-20 w-20 bg-slate-100">
-            <AvatarImage src="" />
+            <AvatarImage src={previewUrl} />
             <AvatarFallback>UI</AvatarFallback>
           </Avatar>
           <div className="space-y-2">
@@ -41,48 +121,144 @@ export default function ProfileForm() {
               Image should be below 4 mb...
             </p>
             <div className="flex gap-2">
+              {/* Hidden file input controlled by custom button */}
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+              />
               <Button
                 type="button"
-                className="bg-orange-500 hover:bg-orange-600">
+                className="bg-orange-500 hover:bg-orange-600"
+                onClick={() => fileInputRef.current?.click()}>
                 Upload
               </Button>
-              <Button type="button" variant="outline">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setPreviewUrl("");
+                  form.setValue("photo", undefined);
+                }}>
                 Cancel
               </Button>
             </div>
           </div>
         </div>
 
+        {/* Form Fields Grid */}
         <div className="grid grid-cols-2 gap-4">
           <FormField
             control={form.control}
-            name="full_name"
+            name="user_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Full Name</FormLabel>
+                <FormLabel>Full Name *</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
           <FormField
             control={form.control}
-            name="email"
+            name="user_email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email *</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input type="email" {...field} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
-          {/* Repeat for other fields: phone_number, address, state, zip_code */}
+          <FormField
+            control={form.control}
+            name="user_phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Phone Number</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="address_line"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Address Line</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="city"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>City</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="state"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>State</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="country"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Country</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="postal_code"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Postal Code</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
 
+        {/* Action Buttons */}
         <div className="flex justify-end gap-3 pt-4">
-          <Button variant="outline" type="button">
+          <Button variant="outline" type="button" onClick={() => form.reset()}>
             Cancel
           </Button>
           <Button type="submit" className="bg-orange-500 hover:bg-orange-600">

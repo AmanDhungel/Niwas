@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useUpdatePreferences } from "@/services/profile.service";
 
 const preferencesSchema = z.object({
   language: z.string().min(1, "Required"),
@@ -28,16 +29,22 @@ const preferencesSchema = z.object({
   show_activity_status: z.boolean(),
 });
 
-export default function PreferencesForm() {
+export default function PreferencesForm({ data }: { data: any }) {
+  const { mutate, isPending } = useUpdatePreferences();
   const form = useForm<z.infer<typeof preferencesSchema>>({
     resolver: zodResolver(preferencesSchema),
     defaultValues: {
-      language: "en-us",
-      timezone: "et",
-      currency: "usd",
-      date_format: "mm/dd/yyyy",
-      profile_visibility: true,
-      show_activity_status: true,
+      language: data?.account_preferences?.language,
+      timezone: data?.account_preferences?.timezone,
+      currency: data?.account_preferences?.curreny,
+      date_format: data?.account_preferences?.date_format,
+      profile_visibility:
+        data?.account_preferences?.privacy_settings.profile_visibility ===
+        "private"
+          ? false
+          : true,
+      show_activity_status:
+        data?.account_preferences?.privacy_settings.show_activity_status,
     },
   });
 
@@ -66,9 +73,8 @@ export default function PreferencesForm() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="en-us">English (US)</SelectItem>
-                      <SelectItem value="en-gb">English (UK)</SelectItem>
-                      <SelectItem value="np">Nepali</SelectItem>
+                      <SelectItem value="English">English</SelectItem>
+                      <SelectItem value="nepali">Nepali</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormItem>
@@ -90,9 +96,12 @@ export default function PreferencesForm() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="et">Eastern Time (ET)</SelectItem>
-                      <SelectItem value="pt">Pacific Time (PT)</SelectItem>
-                      <SelectItem value="npt">Nepal Time (NPT)</SelectItem>
+                      <SelectItem value="ET">Eastern Time (ET)</SelectItem>
+                      <SelectItem value="PT">Pacific Time (PT)</SelectItem>
+                      <SelectItem value="NPT">Nepal Time (NPT)</SelectItem>
+                      <SelectItem value="UTC">
+                        Universal Time Zone (UTC)
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </FormItem>
@@ -114,9 +123,9 @@ export default function PreferencesForm() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="usd">USD ($)</SelectItem>
-                      <SelectItem value="aud">AUD ($)</SelectItem>
-                      <SelectItem value="npr">NPR (रू)</SelectItem>
+                      <SelectItem value="USD">USD ($)</SelectItem>
+                      <SelectItem value="AUD">AUD ($)</SelectItem>
+                      <SelectItem value="NPR">NPR (रू)</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormItem>
@@ -138,9 +147,9 @@ export default function PreferencesForm() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="mm/dd/yyyy">MM/DD/YYYY</SelectItem>
-                      <SelectItem value="dd/mm/yyyy">DD/MM/YYYY</SelectItem>
-                      <SelectItem value="yyyy-mm-dd">YYYY-MM-DD</SelectItem>
+                      <SelectItem value="MM/DD/YYYY">MM/DD/YYYY</SelectItem>
+                      <SelectItem value="DD/MM/YYYY">DD/MM/YYYY</SelectItem>
+                      <SelectItem value="YYYY-MM-DD">YYYY-MM-DD</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormItem>

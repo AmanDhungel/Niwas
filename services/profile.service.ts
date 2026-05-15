@@ -21,3 +21,60 @@ export const useGetProfile = () => {
     `/client_api/ecommerce_user/profile`,
   );
 };
+
+export const useUpdatePassword = () => {
+  return useMutation<ApiResponseType<any>, any, any>({
+    mutationKey: ["updatePassword"],
+    mutationFn: (data: any) =>
+      Post<any, ApiResponseType<any>>({
+        url: "/client_api/ecommerce_user/password/change_password",
+        data: data,
+      }),
+  });
+};
+
+export const useCreatePayment = () => {
+  return useMutation<ApiResponseType<any>, any, any>({
+    mutationKey: ["createPaymnet"],
+    mutationFn: (data: any) =>
+      Post<any, ApiResponseType<any>>({
+        url: data._id
+          ? `/client_api/ecommerce_user/profile/edit/${data._id}`
+          : "/client_api/ecommerce_user/payment/add",
+        data: data,
+      }),
+  });
+};
+
+export const useUpdatePaymentPreferences = () => {
+  return useMutation<ApiResponseType<any>, any, any>({
+    mutationKey: ["updatePaymentPreferences"],
+    mutationFn: (data: any) =>
+      Post<any, ApiResponseType<any>>({
+        url: "/client_api/ecommerce_user/payment/preferences/update",
+        data: data,
+      }),
+  });
+};
+
+export const useUpdateNotification = () => {
+  return useMutation<ApiResponseType<any>, any, any>({
+    mutationKey: ["updateNotification"],
+    mutationFn: (data: any) =>
+      Post<any, ApiResponseType<any>>({
+        url: "/client_api/ecommerce_user/notifications/update",
+        data: data,
+      }),
+  });
+};
+
+export const useUpdatePreferences = () => {
+  return useMutation<ApiResponseType<any>, any, any>({
+    mutationKey: ["updatePreferences"],
+    mutationFn: (data: any) =>
+      Post<any, ApiResponseType<any>>({
+        url: "/client_api/ecommerce_user/preferences/update",
+        data: data,
+      }),
+  });
+};

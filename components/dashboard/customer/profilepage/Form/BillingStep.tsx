@@ -26,7 +26,7 @@ const history = [
   },
 ];
 
-export default function BillingForm() {
+export default function BillingForm({ data }: { data: any }) {
   return (
     <div className="space-y-8">
       <div className="space-y-4">

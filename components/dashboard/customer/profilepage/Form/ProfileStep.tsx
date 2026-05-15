@@ -30,12 +30,11 @@ const profileSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
 
-export default function ProfileForm() {
+export default function ProfileForm({ data }: { data: any }) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
-  const { mutate, isPending } = useUpdateProfile();
-  const { data } = useGetProfile();
-  console.log("data", data?.data);
+  const { mutate } = useUpdateProfile();
+
   const router = useRouter();
 
   const form = useForm<ProfileFormValues>({
@@ -53,17 +52,17 @@ export default function ProfileForm() {
   });
 
   useEffect(() => {
-    if (data?.data) {
-      form.setValue("user_name", data?.data?.user_name);
-      form.setValue("user_email", data?.data?.user_email);
-      form.setValue("user_phone", data?.data?.user_phone);
-      form.setValue("address_line", data?.data?.address_line);
-      form.setValue("country", data?.data?.country);
-      form.setValue("state", data?.data?.state);
-      form.setValue("city", data?.data?.city);
-      form.setValue("postal_code", data?.data?.postal_code);
+    if (data) {
+      form.setValue("user_name", data?.user_name);
+      form.setValue("user_email", data?.user_email);
+      form.setValue("user_phone", data?.user_phone);
+      form.setValue("address_line", data?.address?.address_line);
+      form.setValue("country", data?.address?.country);
+      form.setValue("state", data?.address?.state);
+      form.setValue("city", data?.address?.city);
+      form.setValue("postal_code", data?.address?.postal_code);
       setTimeout(() => {
-        setPreviewUrl(data?.data?.photo);
+        setPreviewUrl(data?.photo);
       }, 0);
     }
   });

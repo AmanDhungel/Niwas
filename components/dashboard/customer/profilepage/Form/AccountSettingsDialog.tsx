@@ -15,9 +15,13 @@ import PreferencesForm from "./PreferencesStep";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useGetProfile } from "@/services/profile.service";
 
 export default function AccountSettingsDialog() {
   const [open, setOpen] = useState(false);
+  const { data, isLoading } = useGetProfile();
+
+  if (isLoading) return <div>Loading...</div>;
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -55,22 +59,22 @@ export default function AccountSettingsDialog() {
 
           <div className="mt-6">
             <TabsContent value="profile">
-              <ProfileForm />
+              <ProfileForm data={data?.data} />
             </TabsContent>
             <TabsContent value="password">
               <PasswordForm />
             </TabsContent>
             <TabsContent value="payment">
-              <PaymentForm />
+              <PaymentForm data={data?.data} />
             </TabsContent>
             <TabsContent value="billing">
-              <BillingForm />
+              <BillingForm data={data?.data} />
             </TabsContent>
             <TabsContent value="notifications">
-              <NotificationsForm />
+              <NotificationsForm data={data?.data} />
             </TabsContent>
             <TabsContent value="preferences">
-              <PreferencesForm />
+              <PreferencesForm data={data?.data} />
             </TabsContent>
           </div>
         </Tabs>

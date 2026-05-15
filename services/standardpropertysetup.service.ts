@@ -171,14 +171,3 @@ export const useGetProperties = () => {
     `/client_api/property`,
   );
 };
-
-export const useDeleteProperty = () => {
-  return useMutation<ApiResponseType<{ id: string }>, any, { id: string }>({
-    mutationKey: ["deleteTaxes"],
-    mutationFn: (data: { id: string }) =>
-      Post<{ id: string }, ApiResponseType<{ id: string }>>({
-        url: `/client_api/property/delete/${data.id}`,
-        data: { id: data.id },
-      }),
-  });
-};

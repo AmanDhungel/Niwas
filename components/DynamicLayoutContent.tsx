@@ -7,6 +7,7 @@ import { useVerifyToken } from "@/services/auth";
 import useAuthStore from "@/context/User";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import TopBar from "./profile-page/TopBar";
 
 export default function DynamicLayoutContent({ children }: any) {
   const pathname = usePathname();
@@ -45,7 +46,12 @@ export default function DynamicLayoutContent({ children }: any) {
     <SidebarProvider>
       <div className="flex w-full min-h-screen">
         <CustomerSidebar />
-        <main className="flex-1 overflow-auto">{children}</main>
+        <main className="flex-1 overflow-auto">
+          <div className="ml-4">
+            <TopBar setSidebarCollapsed={() => {}} />
+          </div>
+          {children}
+        </main>
       </div>
     </SidebarProvider>
   );

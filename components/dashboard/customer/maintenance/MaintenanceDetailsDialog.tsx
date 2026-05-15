@@ -25,6 +25,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DialogTrigger } from "@radix-ui/react-dialog";
+import { useGetMaintenance } from "@/services/maintenance.service";
 
 interface MaintenanceDetailsProps {
   open: boolean;
@@ -33,6 +34,7 @@ interface MaintenanceDetailsProps {
 
 export default function MaintenanceDetailsModal() {
   const [open, setOpen] = useState(false);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>

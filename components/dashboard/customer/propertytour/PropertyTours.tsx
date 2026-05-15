@@ -1,3 +1,4 @@
+"use client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -12,10 +13,33 @@ import {
 import { RequestTourDialog } from "./RequestTourDialog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils copy";
+import {
+  useCancelPropertyTour,
+  useGetPropertyTour,
+} from "@/services/propertytour.service";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function PropertyTours() {
+  const { data, isLoading } = useGetPropertyTour();
+
+  const toursList = Array.isArray(data?.data) ? data.data : data ? [data] : [];
+
+  const totalRequests = toursList.length;
+  const confirmedCount = toursList.filter(
+    (tour: any) => tour.status?.toLowerCase() === "confirmed",
+  ).length;
+  const pendingCount = toursList.filter(
+    (tour: any) => tour.status?.toLowerCase() === "pending",
+  ).length;
+  const cancelledCount = toursList.filter(
+    (tour: any) => tour.status?.toLowerCase() === "cancelled",
+  ).length;
+
+  if (isLoading)
+    return <div className="p-8 text-center text-slate-500">Loading...</div>;
+
   return (
-    <div className="p-8  space-y-8 w-full  min-h-screen">
+    <div className="p-8 space-y-8 w-full min-h-screen">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Property Tours</h1>
@@ -26,15 +50,16 @@ export default function PropertyTours() {
         <RequestTourDialog />
       </div>
 
+      {/* Dynamic Counter Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <StatsCard
           label="Total Requests"
-          value="3"
+          value={totalRequests}
           icon={<CalendarDays className="text-slate-400" />}
         />
         <StatsCard
           label="Confirmed"
-          value="1"
+          value={confirmedCount}
           icon={
             <div className="bg-green-100 p-1 rounded-full">
               <Clock className="text-green-600 h-4 w-4" />
@@ -44,7 +69,7 @@ export default function PropertyTours() {
         />
         <StatsCard
           label="Pending"
-          value="1"
+          value={pendingCount}
           icon={
             <div className="bg-yellow-100 p-1 rounded-full">
               <Clock className="text-yellow-600 h-4 w-4" />
@@ -54,7 +79,7 @@ export default function PropertyTours() {
         />
         <StatsCard
           label="Cancelled"
-          value="1"
+          value={cancelledCount}
           icon={
             <div className="bg-red-100 p-1 rounded-full">
               <X className="text-red-600 h-4 w-4" />
@@ -64,35 +89,53 @@ export default function PropertyTours() {
         />
       </div>
 
+      {/* Render Tour Listings */}
       <div className="space-y-4">
         <h2 className="font-semibold text-slate-800">All Tour Requests</h2>
 
-        <TourCard
-          title="Spacious 3BR Family Home"
-          status="Confirmed"
-          statusColor="bg-green-100 text-green-700"
-          location="Brooklyn, NY"
-          id="TOUR-001"
-          date="2025-02-05"
-          time="2:00 PM"
-          property="LTR-001"
-          notes="Interested in long-term lease"
-          type="In-Person"
-        />
+        {toursList.length === 0 ? (
+          <p className="text-slate-500 text-sm italic">
+            No tour requests found.
+          </p>
+        ) : (
+          toursList.map((tour: any) => {
+            // Setup dynamic design tokens conditionally based on status
+            let statusColor = "bg-yellow-100 text-yellow-700";
+            if (tour.status?.toLowerCase() === "confirmed")
+              statusColor = "bg-green-100 text-green-700";
+            if (tour.status?.toLowerCase() === "cancelled")
+              statusColor = "bg-red-100 text-red-700";
 
-        <TourCard
-          title="Luxury Beach House"
-          status="Pending"
-          statusColor="bg-yellow-100 text-yellow-700"
-          location="Miami, FL"
-          id="TOUR-002"
-          date="2025-02-08"
-          time="10:00 AM"
-          property="STR-002"
-          notes="Weekend getaway"
-          type="Virtual"
-          canCancel
-        />
+            return (
+              <TourCard
+                key={tour._id}
+                title={tour.property?.basic_info?.name || "Unknown Property"}
+                status={
+                  tour.status
+                    ? tour.status.charAt(0).toUpperCase() + tour.status.slice(1)
+                    : "Pending"
+                }
+                statusColor={statusColor}
+                location={`${tour.property?.location?.city || ""}, ${tour.property?.location?.country || ""}`}
+                id={tour._id} // Displays short neat ID from MongoId
+                date={
+                  tour.preferred_date
+                    ? tour.preferred_date.split("T")[0]
+                    : "N/A"
+                }
+                time={tour.preferred_time || "N/A"}
+                property={tour.property?.basic_info?.code || "N/A"}
+                notes={tour.additional_notes || "No additional notes provided."}
+                type={
+                  tour.type
+                    ? tour.type.charAt(0).toUpperCase() + tour.type.slice(1)
+                    : "In-Person"
+                }
+                canCancel={tour.status?.toLowerCase() === "pending"}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );
@@ -127,6 +170,18 @@ function TourCard({
   type,
   canCancel,
 }: any) {
+  const { mutate } = useCancelPropertyTour();
+  const queryClient = useQueryClient();
+  const handleCancelTour = () => {
+    mutate(
+      { _id: id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["property-tour"] });
+        },
+      },
+    );
+  };
   return (
     <Card className="shadow-sm overflow-hidden border-slate-200">
       <CardContent className="p-6">
@@ -189,6 +244,7 @@ function TourCard({
           </Button>
           {canCancel ? (
             <Button
+              onClick={() => handleCancelTour()}
               variant="ghost"
               size="sm"
               className="text-red-500 hover:text-red-600 hover:bg-red-50">

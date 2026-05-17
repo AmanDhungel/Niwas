@@ -27,7 +27,6 @@ import {
 
 // Base URL: /dashboard/customer
 const navItems = [
-  { title: "Profile", icon: User2, url: "/dashboard/customer/profile-page" },
   { title: "Overview", icon: Activity, url: "/dashboard/customer/overview" },
   {
     title: "Browse Rentals",

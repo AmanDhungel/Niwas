@@ -15,6 +15,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { Button } from "../ui/button";
 
 const AvatarDropdown = () => {
   const { user, logout } = useAuthStore();
@@ -56,11 +57,14 @@ const AvatarDropdown = () => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <User /> Profile
+            <Button
+              className="p-0"
+              variant={"ghost"}
+              onClick={() => router.push("/dashboard/customer/profile-page")}>
+              <User /> Profile
+            </Button>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Settings /> Setting
-          </DropdownMenuItem>
+
           <DropdownMenuItem
             className="bg-red-400/10 text-red-400 "
             onClick={() => handleLogout()}>

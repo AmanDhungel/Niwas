@@ -55,6 +55,7 @@ export function RequestMaintenanceForm() {
 
   const {
     register,
+    getValues,
     handleSubmit,
     control,
     reset,
@@ -107,6 +108,8 @@ export function RequestMaintenanceForm() {
       },
     });
   };
+
+  console.log("form values", getValues());
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -235,12 +238,13 @@ export function RequestMaintenanceForm() {
                       <RadioGroupItem
                         value={priority}
                         id={`priority-${priority}`}
+                        className="border-2 data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
                       />
 
                       <Label
                         htmlFor={`priority-${priority}`}
                         className="cursor-pointer">
-                        {priority.toUpperCase()}
+                        {priority}
                       </Label>
                     </div>
                   ))}
@@ -293,7 +297,6 @@ export function RequestMaintenanceForm() {
               </p>
             </label>
 
-            {/* Preview */}
             {selectedFiles.length > 0 && (
               <div className="grid grid-cols-4 md:grid-cols-6 gap-3 pt-3">
                 {selectedFiles.map((file, idx) => (

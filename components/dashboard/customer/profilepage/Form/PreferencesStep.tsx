@@ -19,6 +19,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useUpdatePreferences } from "@/services/profile.service";
+import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
 
 const preferencesSchema = z.object({
   language: z.string().min(1, "Required"),
@@ -29,27 +31,47 @@ const preferencesSchema = z.object({
   show_activity_status: z.boolean(),
 });
 
+type PreferencesFormValues = z.infer<typeof preferencesSchema>;
+
 export default function PreferencesForm({ data }: { data: any }) {
   const { mutate, isPending } = useUpdatePreferences();
-  const form = useForm<z.infer<typeof preferencesSchema>>({
+  const queryClient = useQueryClient();
+
+  const form = useForm<PreferencesFormValues>({
     resolver: zodResolver(preferencesSchema),
     defaultValues: {
-      language: data?.account_preferences?.language,
-      timezone: data?.account_preferences?.timezone,
-      currency: data?.account_preferences?.curreny,
-      date_format: data?.account_preferences?.date_format,
+      language: data?.account_preferences?.language || "",
+      timezone: data?.account_preferences?.timezone || "",
+      currency: data?.account_preferences?.currency || "", // Fixed typo: curreny -> currency
+      date_format: data?.account_preferences?.date_format || "",
       profile_visibility:
-        data?.account_preferences?.privacy_settings.profile_visibility ===
+        data?.account_preferences?.privacy_settings?.profile_visibility ===
         "private"
           ? false
           : true,
       show_activity_status:
-        data?.account_preferences?.privacy_settings.show_activity_status,
+        !!data?.account_preferences?.privacy_settings?.show_activity_status,
     },
   });
 
-  const onSubmit = (data: z.infer<typeof preferencesSchema>) => {
-    console.log("Saving preferences:", data);
+  const onSubmit = (values: PreferencesFormValues) => {
+    const payload = {
+      language: values.language,
+      timezone: values.timezone,
+      currency: values.currency,
+      date_format: values.date_format,
+      privacy_settings: JSON.stringify({
+        profile_visibility: values.profile_visibility ? "public" : "private",
+        show_activity_status: values.show_activity_status,
+      }),
+    };
+
+    mutate(payload, {
+      onSuccess: () => {
+        toast.success("Preferences updated successfully!");
+        queryClient.invalidateQueries({ queryKey: ["profile"] });
+      },
+    });
   };
 
   return (
@@ -66,7 +88,8 @@ export default function PreferencesForm({ data }: { data: any }) {
                   <FormLabel>Language</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={field.value}>
+                    defaultValue={field.value}
+                    value={field.value}>
                     <FormControl>
                       <SelectTrigger className="bg-slate-50/50">
                         <SelectValue placeholder="Select language" />
@@ -89,7 +112,8 @@ export default function PreferencesForm({ data }: { data: any }) {
                   <FormLabel>Timezone</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={field.value}>
+                    defaultValue={field.value}
+                    value={field.value}>
                     <FormControl>
                       <SelectTrigger className="bg-slate-50/50">
                         <SelectValue placeholder="Select timezone" />
@@ -116,7 +140,8 @@ export default function PreferencesForm({ data }: { data: any }) {
                   <FormLabel>Currency</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={field.value}>
+                    defaultValue={field.value}
+                    value={field.value}>
                     <FormControl>
                       <SelectTrigger className="bg-slate-50/50">
                         <SelectValue placeholder="Select currency" />
@@ -140,7 +165,8 @@ export default function PreferencesForm({ data }: { data: any }) {
                   <FormLabel>Date Format</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    defaultValue={field.value}>
+                    defaultValue={field.value}
+                    value={field.value}>
                     <FormControl>
                       <SelectTrigger className="bg-slate-50/50">
                         <SelectValue placeholder="Select format" />
@@ -179,7 +205,7 @@ export default function PreferencesForm({ data }: { data: any }) {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="data-[state=checked]:bg-orange-500"
+                      className="data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
                     />
                   </FormControl>
                 </FormItem>
@@ -203,7 +229,7 @@ export default function PreferencesForm({ data }: { data: any }) {
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
-                      className="data-[state=checked]:bg-orange-500"
+                      className="data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
                     />
                   </FormControl>
                 </FormItem>
@@ -230,13 +256,18 @@ export default function PreferencesForm({ data }: { data: any }) {
         </div>
 
         <div className="flex justify-end gap-3 pt-4">
-          <Button variant="outline" type="button">
+          <Button
+            variant="outline"
+            type="button"
+            disabled={isPending}
+            onClick={() => form.reset()}>
             Cancel
           </Button>
           <Button
             type="submit"
-            className="bg-orange-500 hover:bg-orange-600 px-8">
-            Save Changes
+            disabled={isPending}
+            className="bg-orange-500 hover:bg-orange-600 px-8 min-w-[140px]">
+            {isPending ? "Saving..." : "Save Changes"}
           </Button>
         </div>
       </form>

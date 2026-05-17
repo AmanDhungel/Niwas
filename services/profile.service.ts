@@ -73,7 +73,7 @@ export const useUpdatePreferences = () => {
     mutationKey: ["updatePreferences"],
     mutationFn: (data: any) =>
       Post<any, ApiResponseType<any>>({
-        url: "/client_api/ecommerce_user/preferences/update",
+        url: "/client_api/ecommerce_user/account_preferences/update",
         data: data,
       }),
   });

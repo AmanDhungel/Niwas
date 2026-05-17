@@ -34,12 +34,15 @@ import {
   useGetLongTermOccupany,
   useGetShortTermOccupany,
 } from "@/services/occupancy.service";
+import { useRouter } from "next/navigation";
 
 export default function OverviewPage() {
   const { data: LongTerm, isLoading: LongTermloading } =
     useGetLongTermOccupany();
   const { data: shortTerm, isLoading: ShortTermloading } =
     useGetShortTermOccupany();
+
+  const router = useRouter();
 
   if (LongTermloading || ShortTermloading) return <div>Loading...</div>;
   return (
@@ -72,14 +75,16 @@ export default function OverviewPage() {
           </p>
           <div className="flex flex-wrap gap-3 pt-2">
             <Button
+              onClick={() => router.push("/dashboard/customer/browse-rental")}
               variant="secondary"
-              className="bg-white text-[#F26522] hover:bg-orange-50 gap-2">
+              className="bg-white text-[#F26522] cursor-pointer hover:bg-orange-50 gap-2">
               <Search className="h-4 w-4" />
               Browse Properties
             </Button>
             <Button
+              onClick={() => router.push("/dashboard/customer/property-tour")}
               variant="outline"
-              className="border-white text-white hover:bg-white/10 gap-2">
+              className="border-white text-black cursor-pointer hover:bg-white/10 gap-2">
               <Calendar className="h-4 w-4" />
               Schedule Tour
             </Button>

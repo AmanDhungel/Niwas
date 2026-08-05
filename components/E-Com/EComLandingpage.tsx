@@ -11,7 +11,6 @@ import Footer from "./Footer";
 export default function LandingPage() {
   return (
     <main className="min-h-screen bg-white">
-      {/* <Navbar /> */}
       <Hero />
       <div className="container mx-auto px-4 space-y-24 pb-20">
         <Categories />

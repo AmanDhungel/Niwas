@@ -17,6 +17,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SignupForm } from "./Auth/Signup";
 import LoginPage from "./Auth/Login";
+import ForgotPasswordDialog from "./Auth/ForgotPassword";
 import useAuthStore from "@/context/User";
 
 export default function Navbar() {
@@ -99,6 +100,7 @@ export default function Navbar() {
               <>
                 <LoginPage />
                 <SignupForm />
+                <ForgotPasswordDialog />
               </>
             )}
 

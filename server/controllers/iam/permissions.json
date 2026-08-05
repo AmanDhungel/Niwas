@@ -1,0 +1,2009 @@
+[
+  {
+    "name": "View Domain Workspaces",
+    "description": "Allows viewing domain workspaces.",
+    "policy": "view:domain_workspaces",
+    "type": "allow",
+    "category": "domain_workspace"
+  },
+  {
+    "name": "Restrict View Domain Workspaces",
+    "description": "Restricts viewing domain workspaces.",
+    "policy": "view:domain_workspaces",
+    "type": "deny",
+    "category": "domain_workspace"
+  },
+  {
+    "name": "Create Domain Workspaces",
+    "description": "Allows creating domain workspaces.",
+    "policy": "create:domain_workspaces",
+    "type": "allow",
+    "category": "domain_workspace"
+  },
+  {
+    "name": "Restrict Create Domain Workspaces",
+    "description": "Restricts creating domain workspaces.",
+    "policy": "create:domain_workspaces",
+    "type": "deny",
+    "category": "domain_workspace"
+  },
+  {
+    "name": "Create Vendor Workspaces",
+    "description": "Allows creating vendor workspaces.",
+    "policy": "create:vendor_workspaces",
+    "type": "allow",
+    "category": "vendor_workspace"
+  },
+  {
+    "name": "Restrict Create Vendor Workspaces",
+    "description": "Restricts creating vendor workspaces.",
+    "policy": "create:vendor_workspaces",
+    "type": "deny",
+    "category": "vendor_workspace"
+  },
+  {
+    "name": "View Vendor Workspaces",
+    "description": "Allows viewing vendor workspaces.",
+    "policy": "view:vendor_workspaces",
+    "type": "allow",
+    "category": "vendor_workspace"
+  },
+  {
+    "name": "Restrict View Vendor Workspaces",
+    "description": "Restricts Viewing vendor workspaces.",
+    "policy": "view:vendor_workspaces",
+    "type": "deny",
+    "category": "vendor_workspace"
+  },
+  {
+    "name": "Edit Vendor Workspaces",
+    "description": "Allows editing vendor workspaces.",
+    "policy": "edit:vendor_workspaces",
+    "type": "allow",
+    "category": "vendor_workspace"
+  },
+  {
+    "name": "Restrict Edit Vendor Workspaces",
+    "description": "Restricts editing vendor workspaces.",
+    "policy": "edit:vendor_workspaces",
+    "type": "deny",
+    "category": "vendor_workspace"
+  },
+  {
+    "name": "Delete Vendor Workspaces",
+    "description": "Allows deleting vendor workspaces.",
+    "policy": "delete:vendor_workspaces",
+    "type": "allow",
+    "category": "vendor_workspace"
+  },
+  {
+    "name": "View Boards",
+    "description": "Allows viewing boards.",
+    "policy": "view:boards",
+    "type": "allow",
+    "category": "board"
+  },
+  {
+    "name": "Restrict View Boards",
+    "description": "Restricts viewing boards.",
+    "policy": "view:boards",
+    "type": "deny",
+    "category": "board"
+  },
+  {
+    "name": "Create Boards",
+    "description": "Allows creating boards.",
+    "policy": "create:boards",
+    "type": "allow",
+    "category": "board"
+  },
+  {
+    "name": "Restrict Create Boards",
+    "description": "Restricts creating boards.",
+    "policy": "create:boards",
+    "type": "deny",
+    "category": "board"
+  },
+  {
+    "name": "Edit Boards",
+    "description": "Allows editing boards.",
+    "policy": "edit:boards",
+    "type": "allow",
+    "category": "board"
+  },
+  {
+    "name": "Restrict Edit Boards",
+    "description": "Restricts editing boards.",
+    "policy": "edit:boards",
+    "type": "deny",
+    "category": "board"
+  },
+  {
+    "name": "Restrict Delete Vendor Workspaces",
+    "description": "Restricts deleting vendor workspaces.",
+    "policy": "delete:vendor_workspaces",
+    "type": "deny",
+    "category": "vendor_workspace"
+  },
+  {
+    "name": "View Tasklist",
+    "description": "Allows viewing a tasklist.",
+    "policy": "view:tasklist",
+    "type": "allow",
+    "category": "tasklist"
+  },
+  {
+    "name": "Restrict View Tasklist",
+    "description": "Restricts viewing a tasklist.",
+    "policy": "view:tasklist",
+    "type": "deny",
+    "category": "tasklist"
+  },
+  {
+    "name": "Create Tasklist",
+    "description": "Allows creating a tasklist.",
+    "policy": "create:tasklist",
+    "type": "allow",
+    "category": "tasklist"
+  },
+  {
+    "name": "Restrict Create Tasklist",
+    "description": "Restricts creating a tasklist.",
+    "policy": "create:tasklist",
+    "type": "deny",
+    "category": "tasklist"
+  },
+  {
+    "name": "Move Tasklist Within Board",
+    "description": "Allows moving tasklists within a board.",
+    "policy": "move:tasklist_within_board",
+    "type": "allow",
+    "category": "tasklist"
+  },
+  {
+    "name": "Restrict Move Tasklist Within Board",
+    "description": "Restricts moving tasklists within a board.",
+    "policy": "move:tasklist_within_board",
+    "type": "deny",
+    "category": "tasklist"
+  },
+  {
+    "name": "Move Task Within Board",
+    "description": "Allows moving tasks within a board.",
+    "policy": "move:task_within_board",
+    "type": "allow",
+    "category": "tasklist"
+  },
+  {
+    "name": "Restrict Move Task Within Board",
+    "description": "Restricts moving tasks within a board.",
+    "policy": "move:task_within_board",
+    "type": "deny",
+    "category": "tasklist"
+  },
+  {
+    "name": "Delete Tasklist",
+    "description": "Allows deleting a tasklist.",
+    "policy": "delete:tasklist",
+    "type": "allow",
+    "category": "tasklist"
+  },
+  {
+    "name": "Restrict Delete Tasklist",
+    "description": "Restricts deleting a tasklist.",
+    "policy": "delete:tasklist",
+    "type": "deny",
+    "category": "tasklist"
+  },
+  {
+    "name": "View Task",
+    "description": "Allows viewing a task.",
+    "policy": "view:task",
+    "type": "allow",
+    "category": "task"
+  },
+  {
+    "name": "Restrict View Task",
+    "description": "Restricts viewing a task.",
+    "policy": "view:task",
+    "type": "deny",
+    "category": "task"
+  },
+  {
+    "name": "Create Task",
+    "description": "Allows creating a task.",
+    "policy": "create:task",
+    "type": "allow",
+    "category": "task"
+  },
+  {
+    "name": "Restrict Create Task",
+    "description": "Restricts creating a task.",
+    "policy": "create:task",
+    "type": "deny",
+    "category": "task"
+  },
+  {
+    "name": "Delete Task",
+    "description": "Allows deleting a task.",
+    "policy": "delete:task",
+    "type": "allow",
+    "category": "task"
+  },
+  {
+    "name": "Restrict Delete Task",
+    "description": "Restricts deleting a task.",
+    "policy": "delete:task",
+    "type": "deny",
+    "category": "task"
+  },
+  {
+    "name": "Delete Board",
+    "description": "Allows deleting a board.",
+    "policy": "delete:board",
+    "type": "allow",
+    "category": "board"
+  },
+  {
+    "name": "Restrict Delete Board",
+    "description": "Restricts deleting a board.",
+    "policy": "delete:board",
+    "type": "deny",
+    "category": "board"
+  },
+  {
+    "name": "View CRM Contacts",
+    "description": "Allows viewing CRM contacts.",
+    "policy": "view:crm_contacts",
+    "type": "allow",
+    "category": "crm_contact"
+  },
+  {
+    "name": "Restrict View CRM Contacts",
+    "description": "Restricts viewing CRM contacts.",
+    "policy": "view:crm_contacts",
+    "type": "deny",
+    "category": "crm_contact"
+  },
+  {
+    "name": "Edit CRM Contacts",
+    "description": "Allows editing CRM contacts.",
+    "policy": "edit:crm_contacts",
+    "type": "allow",
+    "category": "crm_contact"
+  },
+  {
+    "name": "Restrict Edit CRM Contacts",
+    "description": "Restricts editing CRM contacts.",
+    "policy": "edit:crm_contacts",
+    "type": "deny",
+    "category": "crm_contact"
+  },
+  {
+    "name": "Create CRM Contacts",
+    "description": "Allows creating CRM contacts.",
+    "policy": "create:crm_contacts",
+    "type": "allow",
+    "category": "crm_contact"
+  },
+  {
+    "name": "Restrict Create CRM Contacts",
+    "description": "Restricts creating CRM contacts.",
+    "policy": "create:crm_contacts",
+    "type": "deny",
+    "category": "crm_contact"
+  },
+  {
+    "name": "Delete CRM Contacts",
+    "description": "Allows deleting CRM contacts.",
+    "policy": "delete:crm_contacts",
+    "type": "allow",
+    "category": "crm_contact"
+  },
+  {
+    "name": "Restrict Delete CRM Contacts",
+    "description": "Restricts deleting CRM contacts.",
+    "policy": "delete:crm_contacts",
+    "type": "deny",
+    "category": "crm_contact"
+  },
+  {
+    "name": "View CRM Companies",
+    "description": "Allows viewing CRM companies.",
+    "policy": "view:crm_companies",
+    "type": "allow",
+    "category": "crm_company"
+  },
+  {
+    "name": "Restrict View CRM Companies",
+    "description": "Restricts viewing CRM companies.",
+    "policy": "view:crm_companies",
+    "type": "deny",
+    "category": "crm_company"
+  },
+  {
+    "name": "Edit CRM Companies",
+    "description": "Allows editing CRM companies.",
+    "policy": "edit:crm_companies",
+    "type": "allow",
+    "category": "crm_company"
+  },
+  {
+    "name": "Restrict Edit CRM Companies",
+    "description": "Restricts editing CRM companies.",
+    "policy": "edit:crm_companies",
+    "type": "deny",
+    "category": "crm_company"
+  },
+  {
+    "name": "Create CRM Companies",
+    "description": "Allows creating CRM companies.",
+    "policy": "create:crm_companies",
+    "type": "allow",
+    "category": "crm_company"
+  },
+  {
+    "name": "Restrict Create CRM Companies",
+    "description": "Restricts creating CRM companies.",
+    "policy": "create:crm_companies",
+    "type": "deny",
+    "category": "crm_company"
+  },
+  {
+    "name": "Delete CRM Companies",
+    "description": "Allows deleting CRM companies.",
+    "policy": "delete:crm_companies",
+    "type": "allow",
+    "category": "crm_company"
+  },
+  {
+    "name": "Restrict Delete CRM Companies",
+    "description": "Restricts deleting CRM companies.",
+    "policy": "delete:crm_companies",
+    "type": "deny",
+    "category": "crm_company"
+  },
+  {
+    "name": "View CRM Deals",
+    "description": "Allows viewing CRM deals.",
+    "policy": "view:crm_deals",
+    "type": "allow",
+    "category": "crm_deal"
+  },
+  {
+    "name": "Restrict View CRM Deals",
+    "description": "Restricts viewing CRM deals.",
+    "policy": "view:crm_deals",
+    "type": "deny",
+    "category": "crm_deal"
+  },
+  {
+    "name": "Edit CRM Deals",
+    "description": "Allows editing CRM deals.",
+    "policy": "edit:crm_deals",
+    "type": "allow",
+    "category": "crm_deal"
+  },
+  {
+    "name": "Restrict Edit CRM Deals",
+    "description": "Restricts editing CRM deals.",
+    "policy": "edit:crm_deals",
+    "type": "deny",
+    "category": "crm_deal"
+  },
+  {
+    "name": "Create CRM Deals",
+    "description": "Allows creating CRM deals.",
+    "policy": "create:crm_deals",
+    "type": "allow",
+    "category": "crm_deal"
+  },
+  {
+    "name": "Restrict Create CRM Deals",
+    "description": "Restricts creating CRM deals.",
+    "policy": "create:crm_deals",
+    "type": "deny",
+    "category": "crm_deal"
+  },
+  {
+    "name": "Delete CRM Deals",
+    "description": "Allows deleting CRM deals.",
+    "policy": "delete:crm_deals",
+    "type": "allow",
+    "category": "crm_deal"
+  },
+  {
+    "name": "Restrict Delete CRM Deals",
+    "description": "Restricts deleting CRM deals.",
+    "policy": "delete:crm_deals",
+    "type": "deny",
+    "category": "crm_deal"
+  },
+  {
+    "name": "View CRM Leads",
+    "description": "Allows viewing CRM leads.",
+    "policy": "view:crm_leads",
+    "type": "allow",
+    "category": "crm_lead"
+  },
+  {
+    "name": "Restrict View CRM Leads",
+    "description": "Restricts viewing CRM leads.",
+    "policy": "view:crm_leads",
+    "type": "deny",
+    "category": "crm_lead"
+  },
+  {
+    "name": "Edit CRM Leads",
+    "description": "Allows editing CRM leads.",
+    "policy": "edit:crm_leads",
+    "type": "allow",
+    "category": "crm_lead"
+  },
+  {
+    "name": "Restrict Edit CRM Leads",
+    "description": "Restricts editing CRM leads.",
+    "policy": "edit:crm_leads",
+    "type": "deny",
+    "category": "crm_lead"
+  },
+  {
+    "name": "Create CRM Leads",
+    "description": "Allows creating CRM leads.",
+    "policy": "create:crm_leads",
+    "type": "allow",
+    "category": "crm_lead"
+  },
+  {
+    "name": "Restrict Create CRM Leads",
+    "description": "Restricts creating CRM leads.",
+    "policy": "create:crm_leads",
+    "type": "deny",
+    "category": "crm_lead"
+  },
+  {
+    "name": "Delete CRM Leads",
+    "description": "Allows deleting CRM leads.",
+    "policy": "delete:crm_leads",
+    "type": "allow",
+    "category": "crm_lead"
+  },
+  {
+    "name": "Restrict Delete CRM Leads",
+    "description": "Restricts deleting CRM leads.",
+    "policy": "delete:crm_leads",
+    "type": "deny",
+    "category": "crm_lead"
+  },
+  {
+    "name": "View CRM Pipeline",
+    "description": "Allows viewing CRM pipeline.",
+    "policy": "view:crm_pipeline",
+    "type": "allow",
+    "category": "crm_pipeline"
+  },
+  {
+    "name": "Restrict View CRM Pipeline",
+    "description": "Restricts viewing CRM pipeline.",
+    "policy": "view:crm_pipeline",
+    "type": "deny",
+    "category": "crm_pipeline"
+  },
+  {
+    "name": "Edit CRM Pipeline",
+    "description": "Allows editing CRM pipeline.",
+    "policy": "edit:crm_pipeline",
+    "type": "allow",
+    "category": "crm_pipeline"
+  },
+  {
+    "name": "Restrict Edit CRM Pipeline",
+    "description": "Restricts editing CRM pipeline.",
+    "policy": "edit:crm_pipeline",
+    "type": "deny",
+    "category": "crm_pipeline"
+  },
+  {
+    "name": "Create CRM Pipeline",
+    "description": "Allows creating CRM pipeline.",
+    "policy": "create:crm_pipeline",
+    "type": "allow",
+    "category": "crm_pipeline"
+  },
+  {
+    "name": "Restrict Create CRM Pipeline",
+    "description": "Restricts creating CRM pipeline.",
+    "policy": "create:crm_pipeline",
+    "type": "deny",
+    "category": "crm_pipeline"
+  },
+  {
+    "name": "Delete CRM Pipeline",
+    "description": "Allows deleting CRM pipeline.",
+    "policy": "delete:crm_pipeline",
+    "type": "allow",
+    "category": "crm_pipeline"
+  },
+  {
+    "name": "Restrict Delete CRM Pipeline",
+    "description": "Restricts deleting CRM pipeline.",
+    "policy": "delete:crm_pipeline",
+    "type": "deny",
+    "category": "crm_pipeline"
+  },
+  {
+    "name": "View CRM Analytics",
+    "description": "Allows viewing CRM analytics.",
+    "policy": "view:crm_analytics",
+    "type": "allow",
+    "category": "crm_analytic"
+  },
+  {
+    "name": "Restrict View CRM Analytics",
+    "description": "Restricts viewing CRM analytics.",
+    "policy": "view:crm_analytics",
+    "type": "deny",
+    "category": "crm_analytic"
+  },
+  {
+    "name": "View CRM Activities",
+    "description": "Allows viewing CRM activities.",
+    "policy": "view:crm_activities",
+    "type": "allow",
+    "category": "crm_activity"
+  },
+  {
+    "name": "Restrict View CRM Activities",
+    "description": "Restricts viewing CRM activities.",
+    "policy": "view:crm_activities",
+    "type": "deny",
+    "category": "crm_activity"
+  },
+  {
+    "name": "Edit CRM Activities",
+    "description": "Allows editing CRM activities.",
+    "policy": "edit:crm_activities",
+    "type": "allow",
+    "category": "crm_activity"
+  },
+  {
+    "name": "Restrict Edit CRM Activities",
+    "description": "Restricts editing CRM activities.",
+    "policy": "edit:crm_activities",
+    "type": "deny",
+    "category": "crm_activity"
+  },
+  {
+    "name": "Create CRM Activities",
+    "description": "Allows creating CRM activities.",
+    "policy": "create:crm_activities",
+    "type": "allow",
+    "category": "crm_activity"
+  },
+  {
+    "name": "Restrict Create CRM Activities",
+    "description": "Restricts creating CRM activities.",
+    "policy": "create:crm_activities",
+    "type": "deny",
+    "category": "crm_activity"
+  },
+  {
+    "name": "Delete CRM Activities",
+    "description": "Allows deleting CRM activities.",
+    "policy": "delete:crm_activities",
+    "type": "allow",
+    "category": "crm_activity"
+  },
+  {
+    "name": "Restrict Delete CRM Activities",
+    "description": "Restricts deleting CRM activities.",
+    "policy": "delete:crm_activities",
+    "type": "deny",
+    "category": "crm_activity"
+  },
+  {
+    "name": "View Employees",
+    "description": "Allows viewing employees.",
+    "policy": "view:hrm_employees_employees",
+    "type": "allow",
+    "category": "hrm_employee"
+  },
+  {
+    "name": "Restrict View Employees",
+    "description": "Restricts viewing employees.",
+    "policy": "view:hrm_employees_employees",
+    "type": "deny",
+    "category": "hrm_employee"
+  },
+  {
+    "name": "Edit Employees",
+    "description": "Allows editing employees.",
+    "policy": "edit:hrm_employees_employees",
+    "type": "allow",
+    "category": "hrm_employee"
+  },
+  {
+    "name": "Restrict Edit Employees",
+    "description": "Restricts editing employees.",
+    "policy": "edit:hrm_employees_employees",
+    "type": "deny",
+    "category": "hrm_employee"
+  },
+  {
+    "name": "Create Employees",
+    "description": "Allows creating employees.",
+    "policy": "create:hrm_employees_employees",
+    "type": "allow",
+    "category": "hrm_employee"
+  },
+  {
+    "name": "Restrict Create Employees",
+    "description": "Restricts creating employees.",
+    "policy": "create:hrm_employees_employees",
+    "type": "deny",
+    "category": "hrm_employee"
+  },
+  {
+    "name": "Delete Employees",
+    "description": "Allows deleting employees.",
+    "policy": "delete:hrm_employees_employees",
+    "type": "allow",
+    "category": "hrm_employee"
+  },
+  {
+    "name": "Restrict Delete Employees",
+    "description": "Restricts deleting employees.",
+    "policy": "delete:hrm_employees_employees",
+    "type": "deny",
+    "category": "hrm_employee"
+  },
+
+  {
+    "name": "View Departments",
+    "description": "Allows viewing departments.",
+    "policy": "view:hrm_employees_departments",
+    "type": "allow",
+    "category": "hrm_department"
+  },
+  {
+    "name": "Restrict View Departments",
+    "description": "Restricts viewing departments.",
+    "policy": "view:hrm_employees_departments",
+    "type": "deny",
+    "category": "hrm_department"
+  },
+  {
+    "name": "Edit Departments",
+    "description": "Allows editing departments.",
+    "policy": "edit:hrm_employees_departments",
+    "type": "allow",
+    "category": "hrm_department"
+  },
+  {
+    "name": "Restrict Edit Departments",
+    "description": "Restricts editing departments.",
+    "policy": "edit:hrm_employees_departments",
+    "type": "deny",
+    "category": "hrm_department"
+  },
+  {
+    "name": "Create Departments",
+    "description": "Allows creating departments.",
+    "policy": "create:hrm_employees_departments",
+    "type": "allow",
+    "category": "hrm_department"
+  },
+  {
+    "name": "Restrict Create Departments",
+    "description": "Restricts creating departments.",
+    "policy": "create:hrm_employees_departments",
+    "type": "deny",
+    "category": "hrm_department"
+  },
+  {
+    "name": "Delete Departments",
+    "description": "Allows deleting departments.",
+    "policy": "delete:hrm_employees_departments",
+    "type": "allow",
+    "category": "hrm_department"
+  },
+  {
+    "name": "Restrict Delete Departments",
+    "description": "Restricts deleting departments.",
+    "policy": "delete:hrm_employees_departments",
+    "type": "deny",
+    "category": "hrm_department"
+  },
+
+  {
+    "name": "View Designations",
+    "description": "Allows viewing designations.",
+    "policy": "view:hrm_employees_designations",
+    "type": "allow",
+    "category": "hrm_designation"
+  },
+  {
+    "name": "Restrict View Designations",
+    "description": "Restricts viewing designations.",
+    "policy": "view:hrm_employees_designations",
+    "type": "deny",
+    "category": "hrm_designation"
+  },
+  {
+    "name": "Edit Designations",
+    "description": "Allows editing designations.",
+    "policy": "edit:hrm_employees_designations",
+    "type": "allow",
+    "category": "hrm_designation"
+  },
+  {
+    "name": "Restrict Edit Designations",
+    "description": "Restricts editing designations.",
+    "policy": "edit:hrm_employees_designations",
+    "type": "deny",
+    "category": "hrm_designation"
+  },
+  {
+    "name": "Create Designations",
+    "description": "Allows creating designations.",
+    "policy": "create:hrm_employees_designations",
+    "type": "allow",
+    "category": "hrm_designation"
+  },
+  {
+    "name": "Restrict Create Designations",
+    "description": "Restricts creating designations.",
+    "policy": "create:hrm_employees_designations",
+    "type": "deny",
+    "category": "hrm_designation"
+  },
+  {
+    "name": "Delete Designations",
+    "description": "Allows deleting designations.",
+    "policy": "delete:hrm_employees_designations",
+    "type": "allow",
+    "category": "hrm_designation"
+  },
+  {
+    "name": "Restrict Delete Designations",
+    "description": "Restricts deleting designations.",
+    "policy": "delete:hrm_employees_designations",
+    "type": "deny",
+    "category": "hrm_designation"
+  },
+
+  {
+    "name": "View Policies",
+    "description": "Allows viewing policies.",
+    "policy": "view:hrm_employees_policies",
+    "type": "allow",
+    "category": "hrm_policy"
+  },
+  {
+    "name": "Restrict View Policies",
+    "description": "Restricts viewing policies.",
+    "policy": "view:hrm_employees_policies",
+    "type": "deny",
+    "category": "hrm_policy"
+  },
+  {
+    "name": "Edit Policies",
+    "description": "Allows editing policies.",
+    "policy": "edit:hrm_employees_policies",
+    "type": "allow",
+    "category": "hrm_policy"
+  },
+  {
+    "name": "Restrict Edit Policies",
+    "description": "Restricts editing policies.",
+    "policy": "edit:hrm_employees_policies",
+    "type": "deny",
+    "category": "hrm_policy"
+  },
+  {
+    "name": "Create Policies",
+    "description": "Allows creating policies.",
+    "policy": "create:hrm_employees_policies",
+    "type": "allow",
+    "category": "hrm_policy"
+  },
+  {
+    "name": "Restrict Create Policies",
+    "description": "Restricts creating policies.",
+    "policy": "create:hrm_employees_policies",
+    "type": "deny",
+    "category": "hrm_policy"
+  },
+  {
+    "name": "Delete Policies",
+    "description": "Allows deleting policies.",
+    "policy": "delete:hrm_employees_policies",
+    "type": "allow",
+    "category": "hrm_policy"
+  },
+  {
+    "name": "Restrict Delete Policies",
+    "description": "Restricts deleting policies.",
+    "policy": "delete:hrm_employees_policies",
+    "type": "deny",
+    "category": "hrm_policy"
+  },
+  {
+    "name": "View Tickets",
+    "description": "Allows viewing tickets.",
+    "policy": "view:hrm_tickets",
+    "type": "allow",
+    "category": "hrm_ticket"
+  },
+  {
+    "name": "Restrict View Tickets",
+    "description": "Restricts viewing tickets.",
+    "policy": "view:hrm_tickets",
+    "type": "deny",
+    "category": "hrm_ticket"
+  },
+  {
+    "name": "Edit Tickets",
+    "description": "Allows editing tickets.",
+    "policy": "edit:hrm_tickets_tickets",
+    "type": "allow",
+    "category": "hrm_ticket"
+  },
+  {
+    "name": "Restrict Edit Tickets",
+    "description": "Restricts editing tickets.",
+    "policy": "edit:hrm_tickets",
+    "type": "deny",
+    "category": "hrm_ticket"
+  },
+  {
+    "name": "Create Tickets",
+    "description": "Allows creating tickets.",
+    "policy": "create:hrm_tickets",
+    "type": "allow",
+    "category": "hrm_ticket"
+  },
+  {
+    "name": "Restrict Create Tickets",
+    "description": "Restricts creating tickets.",
+    "policy": "create:hrm_tickets",
+    "type": "deny",
+    "category": "hrm_ticket"
+  },
+  {
+    "name": "Delete Tickets",
+    "description": "Allows deleting tickets.",
+    "policy": "delete:hrm_tickets",
+    "type": "allow",
+    "category": "hrm_ticket"
+  },
+  {
+    "name": "Restrict Delete Tickets",
+    "description": "Restricts deleting tickets.",
+    "policy": "delete:hrm_tickets",
+    "type": "deny",
+    "category": "hrm_ticket"
+  },
+  {
+    "name": "View Holidays",
+    "description": "Allows viewing holidays.",
+    "policy": "view:hrm_holidays",
+    "type": "allow",
+    "category": "hrm_holiday"
+  },
+  {
+    "name": "Restrict View Holidays",
+    "description": "Restricts viewing holidays.",
+    "policy": "view:hrm_holidays",
+    "type": "deny",
+    "category": "hrm_holiday"
+  },
+  {
+    "name": "Edit Holidays",
+    "description": "Allows editing holidays.",
+    "policy": "edit:hrm_holidays",
+    "type": "allow",
+    "category": "hrm_holiday"
+  },
+  {
+    "name": "Restrict Edit Holidays",
+    "description": "Restricts editing holidays.",
+    "policy": "edit:hrm_holidays",
+    "type": "deny",
+    "category": "hrm_holiday"
+  },
+  {
+    "name": "Create Holidays",
+    "description": "Allows creating holidays.",
+    "policy": "create:hrm_holidays",
+    "type": "allow",
+    "category": "hrm_holiday"
+  },
+  {
+    "name": "Restrict Create Holidays",
+    "description": "Restricts creating holidays.",
+    "policy": "create:hrm_holidays",
+    "type": "deny",
+    "category": "hrm_holiday"
+  },
+  {
+    "name": "Delete Holidays",
+    "description": "Allows deleting holidays.",
+    "policy": "delete:hrm_holidays",
+    "type": "allow",
+    "category": "hrm_holiday"
+  },
+  {
+    "name": "Restrict Delete Holidays",
+    "description": "Restricts deleting holidays.",
+    "policy": "delete:hrm_holidays",
+    "type": "deny",
+    "category": "hrm_holiday"
+  },
+  {
+    "name": "View Indicator",
+    "description": "Allows viewing indicator.",
+    "policy": "view:hrm_performance_indicator",
+    "type": "allow",
+    "category": "hrm_performance_indicator"
+  },
+  {
+    "name": "Restrict View Indicator",
+    "description": "Restricts viewing indicator.",
+    "policy": "view:hrm_performance_indicator",
+    "type": "deny",
+    "category": "hrm_performance_indicator"
+  },
+  {
+    "name": "Edit Indicator",
+    "description": "Allows editing indicator.",
+    "policy": "edit:hrm_performance_indicator",
+    "type": "allow",
+    "category": "hrm_performance_indicator"
+  },
+  {
+    "name": "Restrict Edit Indicator",
+    "description": "Restricts editing indicator.",
+    "policy": "edit:hrm_performance_indicator",
+    "type": "deny",
+    "category": "hrm_performance_indicator"
+  },
+  {
+    "name": "Create Indicator",
+    "description": "Allows creating indicator.",
+    "policy": "create:hrm_performance_indicator",
+    "type": "allow",
+    "category": "hrm_performance_indicator"
+  },
+  {
+    "name": "Restrict Create Indicator",
+    "description": "Restricts creating indicator.",
+    "policy": "create:hrm_performance_indicator",
+    "type": "deny",
+    "category": "hrm_performance_indicator"
+  },
+  {
+    "name": "Delete Indicator",
+    "description": "Allows deleting indicator.",
+    "policy": "delete:hrm_performance_indicator",
+    "type": "allow",
+    "category": "hrm_performance_indicator"
+  },
+  {
+    "name": "Restrict Delete Indicator",
+    "description": "Restricts deleting indicator.",
+    "policy": "delete:hrm_performance_indicator",
+    "type": "deny",
+    "category": "hrm_performance_indicator"
+  },
+  {
+    "name": "View Appraisal",
+    "description": "Allows viewing appraisal.",
+    "policy": "view:hrm_performance_appraisal",
+    "type": "allow",
+    "category": "hrm_performance_appraisal"
+  },
+  {
+    "name": "Restrict View Appraisal",
+    "description": "Restricts viewing appraisal.",
+    "policy": "view:hrm_performance_appraisal",
+    "type": "deny",
+    "category": "hrm_performance_appraisal"
+  },
+  {
+    "name": "Edit Appraisal",
+    "description": "Allows editing appraisal.",
+    "policy": "edit:hrm_performance_appraisal",
+    "type": "allow",
+    "category": "hrm_performance_appraisal"
+  },
+  {
+    "name": "Restrict Edit Appraisal",
+    "description": "Restricts editing appraisal.",
+    "policy": "edit:hrm_performance_appraisal",
+    "type": "deny",
+    "category": "hrm_performance_appraisal"
+  },
+  {
+    "name": "Create Appraisal",
+    "description": "Allows creating appraisal.",
+    "policy": "create:hrm_performance_appraisal",
+    "type": "allow",
+    "category": "hrm_performance_appraisal"
+  },
+  {
+    "name": "Restrict Create Appraisal",
+    "description": "Restricts creating appraisal.",
+    "policy": "create:hrm_performance_appraisal",
+    "type": "deny",
+    "category": "hrm_performance_appraisal"
+  },
+  {
+    "name": "Delete Appraisal",
+    "description": "Allows deleting appraisal.",
+    "policy": "delete:hrm_performance_appraisal",
+    "type": "allow",
+    "category": "hrm_performance_appraisal"
+  },
+  {
+    "name": "Restrict Delete Appraisal",
+    "description": "Restricts deleting appraisal.",
+    "policy": "delete:hrm_performance_appraisal",
+    "type": "deny",
+    "category": "hrm_performance_appraisal"
+  },
+  {
+    "name": "View Goal List",
+    "description": "Allows viewing goal list.",
+    "policy": "view:hrm_performance_goal_list",
+    "type": "allow",
+    "category": "hrm_performance_goal_list"
+  },
+  {
+    "name": "Restrict View Goal List",
+    "description": "Restricts viewing goal list.",
+    "policy": "view:hrm_performance_goal_list",
+    "type": "deny",
+    "category": "hrm_performance_goal_list"
+  },
+  {
+    "name": "Edit Goal List",
+    "description": "Allows editing goal list.",
+    "policy": "edit:hrm_performance_goal_list",
+    "type": "allow",
+    "category": "hrm_performance_goal_list"
+  },
+  {
+    "name": "Restrict Edit Goal List",
+    "description": "Restricts editing goal list.",
+    "policy": "edit:hrm_performance_goal_list",
+    "type": "deny",
+    "category": "hrm_performance_goal_list"
+  },
+  {
+    "name": "Create Goal List",
+    "description": "Allows creating goal list.",
+    "policy": "create:hrm_performance_goal_list",
+    "type": "allow",
+    "category": "hrm_performance_goal_list"
+  },
+  {
+    "name": "Restrict Create Goal List",
+    "description": "Restricts creating goal list.",
+    "policy": "create:hrm_performance_goal_list",
+    "type": "deny",
+    "category": "hrm_performance_goal_list"
+  },
+  {
+    "name": "Delete Goal List",
+    "description": "Allows deleting goal list.",
+    "policy": "delete:hrm_performance_goal_list",
+    "type": "allow",
+    "category": "hrm_performance_goal_list"
+  },
+  {
+    "name": "Restrict Delete Goal List",
+    "description": "Restricts deleting goal list.",
+    "policy": "delete:hrm_performance_goal_list",
+    "type": "deny",
+    "category": "hrm_performance_goal_list"
+  },
+  {
+    "name": "View Goal Type",
+    "description": "Allows viewing goal type.",
+    "policy": "view:hrm_performance_goal_type",
+    "type": "allow",
+    "category": "hrm_performance_goal_type"
+  },
+  {
+    "name": "Restrict View Goal Type",
+    "description": "Restricts viewing goal type.",
+    "policy": "view:hrm_performance_goal_type",
+    "type": "deny",
+    "category": "hrm_performance_goal_type"
+  },
+  {
+    "name": "Edit Goal Type",
+    "description": "Allows editing goal type.",
+    "policy": "edit:hrm_performance_goal_type",
+    "type": "allow",
+    "category": "hrm_performance_goal_type"
+  },
+  {
+    "name": "Restrict Edit Goal Type",
+    "description": "Restricts editing goal type.",
+    "policy": "edit:hrm_performance_goal_type",
+    "type": "deny",
+    "category": "hrm_performance_goal_type"
+  },
+  {
+    "name": "Create Goal Type",
+    "description": "Allows creating goal type.",
+    "policy": "create:hrm_performance_goal_type",
+    "type": "allow",
+    "category": "hrm_performance_goal_type"
+  },
+  {
+    "name": "Restrict Create Goal Type",
+    "description": "Restricts creating goal type.",
+    "policy": "create:hrm_performance_goal_type",
+    "type": "deny",
+    "category": "hrm_performance_goal_type"
+  },
+  {
+    "name": "Delete Goal Type",
+    "description": "Allows deleting goal type.",
+    "policy": "delete:hrm_performance_goal_type",
+    "type": "allow",
+    "category": "hrm_performance_goal_type"
+  },
+  {
+    "name": "Restrict Delete Goal Type",
+    "description": "Restricts deleting goal type.",
+    "policy": "delete:hrm_performance_goal_type",
+    "type": "deny",
+    "category": "hrm_performance_goal_type"
+  },
+  {
+    "name": "View Training List",
+    "description": "Allows viewing training list.",
+    "policy": "view:hrm_training_list",
+    "type": "allow",
+    "category": "hrm_training_list"
+  },
+  {
+    "name": "Restrict View Training List",
+    "description": "Restricts viewing training list.",
+    "policy": "view:hrm_training_list",
+    "type": "deny",
+    "category": "hrm_training_list"
+  },
+  {
+    "name": "Edit Training List",
+    "description": "Allows editing training list.",
+    "policy": "edit:hrm_training_list",
+    "type": "allow",
+    "category": "hrm_training_list"
+  },
+  {
+    "name": "Restrict Edit Training List",
+    "description": "Restricts editing training list.",
+    "policy": "edit:hrm_training_list",
+    "type": "deny",
+    "category": "hrm_training_list"
+  },
+  {
+    "name": "Create Training List",
+    "description": "Allows creating training list.",
+    "policy": "create:hrm_training_list",
+    "type": "allow",
+    "category": "hrm_training_list"
+  },
+  {
+    "name": "Restrict Create Training List",
+    "description": "Restricts creating training list.",
+    "policy": "create:hrm_training_list",
+    "type": "deny",
+    "category": "hrm_training_list"
+  },
+  {
+    "name": "Delete Training List",
+    "description": "Allows deleting training list.",
+    "policy": "delete:hrm_training_list",
+    "type": "allow",
+    "category": "hrm_training_list"
+  },
+  {
+    "name": "Restrict Delete Training List",
+    "description": "Restricts deleting training list.",
+    "policy": "delete:hrm_training_list",
+    "type": "deny",
+    "category": "hrm_training_list"
+  },
+  {
+    "name": "View Trainers",
+    "description": "Allows viewing trainers.",
+    "policy": "view:hrm_training_trainers",
+    "type": "allow",
+    "category": "hrm_trainer"
+  },
+  {
+    "name": "Restrict View Trainers",
+    "description": "Restricts viewing trainers.",
+    "policy": "view:hrm_training_trainers",
+    "type": "deny",
+    "category": "hrm_trainer"
+  },
+  {
+    "name": "Edit Trainers",
+    "description": "Allows editing trainers.",
+    "policy": "edit:hrm_training_trainers",
+    "type": "allow",
+    "category": "hrm_trainer"
+  },
+  {
+    "name": "Restrict Edit Trainers",
+    "description": "Restricts editing trainers.",
+    "policy": "edit:hrm_training_trainers",
+    "type": "deny",
+    "category": "hrm_trainer"
+  },
+  {
+    "name": "Create Trainers",
+    "description": "Allows creating trainers.",
+    "policy": "create:hrm_training_trainers",
+    "type": "allow",
+    "category": "hrm_trainer"
+  },
+  {
+    "name": "Restrict Create Trainers",
+    "description": "Restricts creating trainers.",
+    "policy": "create:hrm_training_trainers",
+    "type": "deny",
+    "category": "hrm_trainer"
+  },
+  {
+    "name": "Delete Trainers",
+    "description": "Allows deleting trainers.",
+    "policy": "delete:hrm_training_trainers",
+    "type": "allow",
+    "category": "hrm_trainer"
+  },
+  {
+    "name": "Restrict Delete Trainers",
+    "description": "Restricts deleting trainers.",
+    "policy": "delete:hrm_training_trainers",
+    "type": "deny",
+    "category": "hrm_trainer"
+  },
+  {
+    "name": "View Training Type",
+    "description": "Allows viewing training type.",
+    "policy": "view:hrm_training_training_type",
+    "type": "allow",
+    "category": "hrm_training_type"
+  },
+  {
+    "name": "Restrict View Training Type",
+    "description": "Restricts viewing training type.",
+    "policy": "view:hrm_training_training_type",
+    "type": "deny",
+    "category": "hrm_training_type"
+  },
+  {
+    "name": "Edit Training Type",
+    "description": "Allows editing training type.",
+    "policy": "edit:hrm_training_training_type",
+    "type": "allow",
+    "category": "hrm_training_type"
+  },
+  {
+    "name": "Restrict Edit Training Type",
+    "description": "Restricts editing training type.",
+    "policy": "edit:hrm_training_training_type",
+    "type": "deny",
+    "category": "hrm_training_type"
+  },
+  {
+    "name": "Create Training Type",
+    "description": "Allows creating training type.",
+    "policy": "create:hrm_training_training_type",
+    "type": "allow",
+    "category": "hrm_training_type"
+  },
+  {
+    "name": "Restrict Create Training Type",
+    "description": "Restricts creating training type.",
+    "policy": "create:hrm_training_training_type",
+    "type": "deny",
+    "category": "hrm_training_type"
+  },
+  {
+    "name": "Delete Training Type",
+    "description": "Allows deleting training type.",
+    "policy": "delete:hrm_training_training_type",
+    "type": "allow",
+    "category": "hrm_training_type"
+  },
+  {
+    "name": "Restrict Delete Training Type",
+    "description": "Restricts deleting training type.",
+    "policy": "delete:hrm_training_training_type",
+    "type": "deny",
+    "category": "hrm_training_type"
+  },
+  {
+    "name": "View Promotion",
+    "description": "Allows viewing promotion.",
+    "policy": "view:hrm_promotion",
+    "type": "allow",
+    "category": "hrm_promotion"
+  },
+  {
+    "name": "Restrict View Promotion",
+    "description": "Restricts viewing promotion.",
+    "policy": "view:hrm_promotion",
+    "type": "deny",
+    "category": "hrm_promotion"
+  },
+  {
+    "name": "Edit Promotion",
+    "description": "Allows editing promotion.",
+    "policy": "edit:hrm_promotion",
+    "type": "allow",
+    "category": "hrm_promotion"
+  },
+  {
+    "name": "Restrict Edit Promotion",
+    "description": "Restricts editing promotion.",
+    "policy": "edit:hrm_promotion",
+    "type": "deny",
+    "category": "hrm_promotion"
+  },
+  {
+    "name": "Create Promotion",
+    "description": "Allows creating promotion.",
+    "policy": "create:hrm_promotion",
+    "type": "allow",
+    "category": "hrm_promotion"
+  },
+  {
+    "name": "Restrict Create Promotion",
+    "description": "Restricts creating promotion.",
+    "policy": "create:hrm_promotion",
+    "type": "deny",
+    "category": "hrm_promotion"
+  },
+  {
+    "name": "Delete Promotion",
+    "description": "Allows deleting promotion.",
+    "policy": "delete:hrm_promotion",
+    "type": "allow",
+    "category": "hrm_promotion"
+  },
+  {
+    "name": "Restrict Delete Promotion",
+    "description": "Restricts deleting promotion.",
+    "policy": "delete:hrm_promotion",
+    "type": "deny",
+    "category": "hrm_promotion"
+  },
+  {
+    "name": "View Resignation",
+    "description": "Allows viewing resignation.",
+    "policy": "view:hrm_resignation",
+    "type": "allow",
+    "category": "hrm_resignation"
+  },
+  {
+    "name": "Restrict View Resignation",
+    "description": "Restricts viewing resignation.",
+    "policy": "view:hrm_resignation",
+    "type": "deny",
+    "category": "hrm_resignation"
+  },
+  {
+    "name": "Edit Resignation",
+    "description": "Allows editing resignation.",
+    "policy": "edit:hrm_resignation",
+    "type": "allow",
+    "category": "hrm_resignation"
+  },
+  {
+    "name": "Restrict Edit Resignation",
+    "description": "Restricts editing resignation.",
+    "policy": "edit:hrm_resignation",
+    "type": "deny",
+    "category": "hrm_resignation"
+  },
+  {
+    "name": "Create Resignation",
+    "description": "Allows creating resignation.",
+    "policy": "create:hrm_resignation",
+    "type": "allow",
+    "category": "hrm_resignation"
+  },
+  {
+    "name": "Restrict Create Resignation",
+    "description": "Restricts creating resignation.",
+    "policy": "create:hrm_resignation",
+    "type": "deny",
+    "category": "hrm_resignation"
+  },
+  {
+    "name": "Delete Resignation",
+    "description": "Allows deleting resignation.",
+    "policy": "delete:hrm_resignation",
+    "type": "allow",
+    "category": "hrm_resignation"
+  },
+  {
+    "name": "Restrict Delete Resignation",
+    "description": "Restricts deleting resignation.",
+    "policy": "delete:hrm_resignation",
+    "type": "deny",
+    "category": "hrm_resignation"
+  },
+  {
+    "name": "View Termination",
+    "description": "Allows viewing termination.",
+    "policy": "view:hrm_termination",
+    "type": "allow",
+    "category": "hrm_termination"
+  },
+  {
+    "name": "Restrict View Termination",
+    "description": "Restricts viewing termination.",
+    "policy": "view:hrm_termination",
+    "type": "deny",
+    "category": "hrm_termination"
+  },
+  {
+    "name": "Edit Termination",
+    "description": "Allows editing termination.",
+    "policy": "edit:hrm_termination",
+    "type": "allow",
+    "category": "hrm_termination"
+  },
+  {
+    "name": "Restrict Edit Termination",
+    "description": "Restricts editing termination.",
+    "policy": "edit:hrm_termination",
+    "type": "deny",
+    "category": "hrm_termination"
+  },
+  {
+    "name": "Create Termination",
+    "description": "Allows creating termination.",
+    "policy": "create:hrm_termination",
+    "type": "allow",
+    "category": "hrm_termination"
+  },
+  {
+    "name": "Restrict Create Termination",
+    "description": "Restricts creating termination.",
+    "policy": "create:hrm_termination",
+    "type": "deny",
+    "category": "hrm_termination"
+  },
+  {
+    "name": "Delete Termination",
+    "description": "Allows deleting termination.",
+    "policy": "delete:hrm_termination",
+    "type": "allow",
+    "category": "hrm_termination"
+  },
+  {
+    "name": "Restrict Delete Termination",
+    "description": "Restricts deleting termination.",
+    "policy": "delete:hrm_termination",
+    "type": "deny",
+    "category": "hrm_termination"
+  },
+  {
+    "name": "View Portfolio",
+    "description": "Allows viewing portfolio.",
+    "policy": "view:properties_portfolio",
+    "type": "allow",
+    "category": "property_portfolio"
+  },
+  {
+    "name": "Restrict View Portfolio",
+    "description": "Restricts viewing portfolio.",
+    "policy": "view:properties_portfolio",
+    "type": "deny",
+    "category": "property_portfolio"
+  },
+  {
+    "name": "Edit Portfolio",
+    "description": "Allows editing portfolio.",
+    "policy": "edit:properties_portfolio",
+    "type": "allow",
+    "category": "property_portfolio"
+  },
+  {
+    "name": "Restrict Edit Portfolio",
+    "description": "Restricts editing portfolio.",
+    "policy": "edit:properties_portfolio",
+    "type": "deny",
+    "category": "property_portfolio"
+  },
+  {
+    "name": "Create Portfolio",
+    "description": "Allows creating portfolio.",
+    "policy": "create:properties_portfolio",
+    "type": "allow",
+    "category": "property_portfolio"
+  },
+  {
+    "name": "Restrict Create Portfolio",
+    "description": "Restricts creating portfolio.",
+    "policy": "create:properties_portfolio",
+    "type": "deny",
+    "category": "property_portfolio"
+  },
+  {
+    "name": "Delete Portfolio",
+    "description": "Allows deleting portfolio.",
+    "policy": "delete:properties_portfolio",
+    "type": "allow",
+    "category": "property_portfolio"
+  },
+  {
+    "name": "Restrict Delete Portfolio",
+    "description": "Restricts deleting portfolio.",
+    "policy": "delete:properties_portfolio",
+    "type": "deny",
+    "category": "property_portfolio"
+  },
+  {
+    "name": "View Tenants",
+    "description": "Allows viewing tenants.",
+    "policy": "view:properties_tenants",
+    "type": "allow",
+    "category": "property_tenant"
+  },
+  {
+    "name": "Restrict View Tenants",
+    "description": "Restricts viewing tenants.",
+    "policy": "view:properties_tenants",
+    "type": "deny",
+    "category": "property_tenant"
+  },
+  {
+    "name": "Edit Tenants",
+    "description": "Allows editing tenants.",
+    "policy": "edit:properties_tenants",
+    "type": "allow",
+    "category": "property_tenant"
+  },
+  {
+    "name": "Restrict Edit Tenants",
+    "description": "Restricts editing tenants.",
+    "policy": "edit:properties_tenants",
+    "type": "deny",
+    "category": "property_tenant"
+  },
+  {
+    "name": "Create Tenants",
+    "description": "Allows creating tenants.",
+    "policy": "create:properties_tenants",
+    "type": "allow",
+    "category": "property_tenant"
+  },
+  {
+    "name": "Restrict Create Tenants",
+    "description": "Restricts creating tenants.",
+    "policy": "create:properties_tenants",
+    "type": "deny",
+    "category": "property_tenant"
+  },
+  {
+    "name": "Delete Tenants",
+    "description": "Allows deleting tenants.",
+    "policy": "delete:properties_tenants",
+    "type": "allow",
+    "category": "property_tenant"
+  },
+  {
+    "name": "Restrict Delete Tenants",
+    "description": "Restricts deleting tenants.",
+    "policy": "delete:properties_tenants",
+    "type": "deny",
+    "category": "property_tenant"
+  },
+  {
+    "name": "View Owners",
+    "description": "Allows viewing owners.",
+    "policy": "view:properties_owners",
+    "type": "allow",
+    "category": "property_owner"
+  },
+  {
+    "name": "Restrict View Owners",
+    "description": "Restricts viewing owners.",
+    "policy": "view:properties_owners",
+    "type": "deny",
+    "category": "property_owner"
+  },
+  {
+    "name": "Edit Owners",
+    "description": "Allows editing owners.",
+    "policy": "edit:properties_owners",
+    "type": "allow",
+    "category": "property_owner"
+  },
+  {
+    "name": "Restrict Edit Owners",
+    "description": "Restricts editing owners.",
+    "policy": "edit:properties_owners",
+    "type": "deny",
+    "category": "property_owner"
+  },
+  {
+    "name": "Create Owners",
+    "description": "Allows creating owners.",
+    "policy": "create:properties_owners",
+    "type": "allow",
+    "category": "property_owner"
+  },
+  {
+    "name": "Restrict Create Owners",
+    "description": "Restricts creating owners.",
+    "policy": "create:properties_owners",
+    "type": "deny",
+    "category": "property_owner"
+  },
+  {
+    "name": "Delete Owners",
+    "description": "Allows deleting owners.",
+    "policy": "delete:properties_owners",
+    "type": "allow",
+    "category": "property_owner"
+  },
+  {
+    "name": "Restrict Delete Owners",
+    "description": "Restricts deleting owners.",
+    "policy": "delete:properties_owners",
+    "type": "deny",
+    "category": "property_owner"
+  },
+
+  {
+    "name": "View Utilities",
+    "description": "Allows viewing utilities.",
+    "policy": "view:properties_utilities",
+    "type": "allow",
+    "category": "property_utility"
+  },
+  {
+    "name": "Restrict View Utilities",
+    "description": "Restricts viewing utilities.",
+    "policy": "view:properties_utilities",
+    "type": "deny",
+    "category": "property_utility"
+  },
+  {
+    "name": "Edit Utilities",
+    "description": "Allows editing utilities.",
+    "policy": "edit:properties_utilities",
+    "type": "allow",
+    "category": "property_utility"
+  },
+  {
+    "name": "Restrict Edit Utilities",
+    "description": "Restricts editing utilities.",
+    "policy": "edit:properties_utilities",
+    "type": "deny",
+    "category": "property_utility"
+  },
+  {
+    "name": "Create Utilities",
+    "description": "Allows creating utilities.",
+    "policy": "create:properties_utilities",
+    "type": "allow",
+    "category": "property_utility"
+  },
+  {
+    "name": "Restrict Create Utilities",
+    "description": "Restricts creating utilities.",
+    "policy": "create:properties_utilities",
+    "type": "deny",
+    "category": "property_utility"
+  },
+  {
+    "name": "Delete Utilities",
+    "description": "Allows deleting utilities.",
+    "policy": "delete:properties_utilities",
+    "type": "allow",
+    "category": "property_utility"
+  },
+  {
+    "name": "Restrict Delete Utilities",
+    "description": "Restricts deleting utilities.",
+    "policy": "delete:properties_utilities",
+    "type": "deny",
+    "category": "property_utility"
+  },
+  {
+    "name": "View Agreements",
+    "description": "Allows viewing agreements.",
+    "policy": "view:properties_agreements",
+    "type": "allow",
+    "category": "property_agreement"
+  },
+  {
+    "name": "Restrict View Agreements",
+    "description": "Restricts viewing agreements.",
+    "policy": "view:properties_agreements",
+    "type": "deny",
+    "category": "property_agreement"
+  },
+  {
+    "name": "Edit Agreements",
+    "description": "Allows editing agreements.",
+    "policy": "edit:properties_agreements",
+    "type": "allow",
+    "category": "property_agreement"
+  },
+  {
+    "name": "Restrict Edit Agreements",
+    "description": "Restricts editing agreements.",
+    "policy": "edit:properties_agreements",
+    "type": "deny",
+    "category": "property_agreement"
+  },
+  {
+    "name": "Create Agreements",
+    "description": "Allows creating agreements.",
+    "policy": "create:properties_agreements",
+    "type": "allow",
+    "category": "property_agreement"
+  },
+  {
+    "name": "Restrict Create Agreements",
+    "description": "Restricts creating agreements.",
+    "policy": "create:properties_agreements",
+    "type": "deny",
+    "category": "property_agreement"
+  },
+  {
+    "name": "Delete Agreements",
+    "description": "Allows deleting agreements.",
+    "policy": "delete:properties_agreements",
+    "type": "allow",
+    "category": "property_agreement"
+  },
+  {
+    "name": "Restrict Delete Agreements",
+    "description": "Restricts deleting agreements.",
+    "policy": "delete:properties_agreements",
+    "type": "deny",
+    "category": "property_agreement"
+  },
+
+  {
+    "name": "View Parking Management",
+    "description": "Allows viewing parking management.",
+    "policy": "view:properties_parking_management",
+    "type": "allow",
+    "category": "property_parking_management"
+  },
+  {
+    "name": "Restrict View Parking Management",
+    "description": "Restricts viewing parking management.",
+    "policy": "view:properties_parking_management",
+    "type": "deny",
+    "category": "property_parking_management"
+  },
+  {
+    "name": "Edit Parking Management",
+    "description": "Allows editing parking management.",
+    "policy": "edit:properties_parking_management",
+    "type": "allow",
+    "category": "property_parking_management"
+  },
+  {
+    "name": "Restrict Edit Parking Management",
+    "description": "Restricts editing parking management.",
+    "policy": "edit:properties_parking_management",
+    "type": "deny",
+    "category": "property_parking_management"
+  },
+  {
+    "name": "Create Parking Management",
+    "description": "Allows creating parking management.",
+    "policy": "create:properties_parking_management",
+    "type": "allow",
+    "category": "property_parking_management"
+  },
+  {
+    "name": "Restrict Create Parking Management",
+    "description": "Restricts creating parking management.",
+    "policy": "create:properties_parking_management",
+    "type": "deny",
+    "category": "property_parking_management"
+  },
+  {
+    "name": "Delete Parking Management",
+    "description": "Allows deleting parking management.",
+    "policy": "delete:properties_parking_management",
+    "type": "allow",
+    "category": "property_parking_management"
+  },
+  {
+    "name": "Restrict Delete Parking Management",
+    "description": "Restricts deleting parking management.",
+    "policy": "delete:properties_parking_management",
+    "type": "deny",
+    "category": "property_parking_management"
+  },
+  {
+    "name": "View Work Order",
+    "description": "Allows viewing work order.",
+    "policy": "view:support_work_order",
+    "type": "allow",
+    "category": "support_work_order"
+  },
+  {
+    "name": "Restrict View Work Order",
+    "description": "Restricts viewing work order.",
+    "policy": "view:support_work_order",
+    "type": "deny",
+    "category": "support_work_order"
+  },
+  {
+    "name": "Edit Work Order",
+    "description": "Allows editing work order.",
+    "policy": "edit:support_work_order",
+    "type": "allow",
+    "category": "support_work_order"
+  },
+  {
+    "name": "Restrict Edit Work Order",
+    "description": "Restricts editing work order.",
+    "policy": "edit:support_work_order",
+    "type": "deny",
+    "category": "support_work_order"
+  },
+  {
+    "name": "Create Work Order",
+    "description": "Allows creating work order.",
+    "policy": "create:support_work_order",
+    "type": "allow",
+    "category": "support_work_order"
+  },
+  {
+    "name": "Restrict Create Work Order",
+    "description": "Restricts creating work order.",
+    "policy": "create:support_work_order",
+    "type": "deny",
+    "category": "support_work_order"
+  },
+  {
+    "name": "Delete Work Order",
+    "description": "Allows deleting work order.",
+    "policy": "delete:support_work_order",
+    "type": "allow",
+    "category": "support_work_order"
+  },
+  {
+    "name": "Restrict Delete Work Order",
+    "description": "Restricts deleting work order.",
+    "policy": "delete:support_work_order",
+    "type": "deny",
+    "category": "support_work_order"
+  },
+  {
+    "name": "View Complaints",
+    "description": "Allows viewing complaints.",
+    "policy": "view:support_complaints",
+    "type": "allow",
+    "category": "support_complaint"
+  },
+  {
+    "name": "Restrict View Complaints",
+    "description": "Restricts viewing complaints.",
+    "policy": "view:support_complaints",
+    "type": "deny",
+    "category": "support_complaint"
+  },
+  {
+    "name": "Edit Complaints",
+    "description": "Allows editing complaints.",
+    "policy": "edit:support_complaints",
+    "type": "allow",
+    "category": "support_complaint"
+  },
+  {
+    "name": "Restrict Edit Complaints",
+    "description": "Restricts editing complaints.",
+    "policy": "edit:support_complaints",
+    "type": "deny",
+    "category": "support_complaint"
+  },
+  {
+    "name": "Create Complaints",
+    "description": "Allows creating complaints.",
+    "policy": "create:support_complaints",
+    "type": "allow",
+    "category": "support_complaint"
+  },
+  {
+    "name": "Restrict Create Complaints",
+    "description": "Restricts creating complaints.",
+    "policy": "create:support_complaints",
+    "type": "deny",
+    "category": "support_complaint"
+  },
+  {
+    "name": "Delete Complaints",
+    "description": "Allows deleting complaints.",
+    "policy": "delete:support_complaints",
+    "type": "allow",
+    "category": "support_complaint"
+  },
+  {
+    "name": "Restrict Delete Complaints",
+    "description": "Restricts deleting complaints.",
+    "policy": "delete:support_complaints",
+    "type": "deny",
+    "category": "support_complaint"
+  },
+  {
+    "name": "View Repair & Maintenance",
+    "description": "Allows viewing repair and maintenance records.",
+    "policy": "view:support_ram",
+    "type": "allow",
+    "category": "support_repair_and_maintenance"
+  },
+  {
+    "name": "Restrict View Repair & Maintenance",
+    "description": "Restricts viewing repair and maintenance records.",
+    "policy": "view:support_ram",
+    "type": "deny",
+    "category": "support_repair_and_maintenance"
+  },
+  {
+    "name": "Edit Repair & Maintenance",
+    "description": "Allows editing repair and maintenance records.",
+    "policy": "edit:support_ram",
+    "type": "allow",
+    "category": "support_repair_and_maintenance"
+  },
+  {
+    "name": "Restrict Edit Repair & Maintenance",
+    "description": "Restricts editing repair and maintenance records.",
+    "policy": "edit:support_ram",
+    "type": "deny",
+    "category": "support_repair_and_maintenance"
+  },
+  {
+    "name": "Create Repair & Maintenance",
+    "description": "Allows creating repair and maintenance records.",
+    "policy": "create:support_ram",
+    "type": "allow",
+    "category": "support_repair_and_maintenance"
+  },
+  {
+    "name": "Restrict Create Repair & Maintenance",
+    "description": "Restricts creating repair and maintenance records.",
+    "policy": "create:support_ram",
+    "type": "deny",
+    "category": "support_repair_and_maintenance"
+  },
+  {
+    "name": "Delete Repair & Maintenance",
+    "description": "Allows deleting repair and maintenance records.",
+    "policy": "delete:support_ram",
+    "type": "allow",
+    "category": "support_repair_and_maintenance"
+  },
+  {
+    "name": "Restrict Delete Repair & Maintenance",
+    "description": "Restricts deleting repair and maintenance records.",
+    "policy": "delete:support_ram",
+    "type": "deny",
+    "category": "support_repair_and_maintenance"
+  }
+]

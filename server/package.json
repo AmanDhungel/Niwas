@@ -1,0 +1,55 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test:watch": "node --experimental-vm-modules node_modules/.bin/jest --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {},
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ],
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js"
+    ],
+    "moduleNameMapper": {},
+    "testTimeout": 30000
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1019.0",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "http": "^0.0.1-security",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2",
+    "multer": "^1.4.5-lts.1",
+    "nanoid": "^5.0.9",
+    "nodemailer": "^6.10.0",
+    "nodemon": "^3.1.9",
+    "path": "^0.12.7",
+    "socket.io": "^4.8.1",
+    "xlsx": "^0.18.5"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@jest/globals": "^30.3.0",
+    "jest": "^30.3.0",
+    "mongodb-memory-server": "^11.1.0",
+    "supertest": "^7.2.2"
+  }
+}

@@ -186,16 +186,23 @@ export default function LoginPage() {
 
             <motion.div
               variants={itemVariants}
-              className="flex items-center gap-2">
-              <Checkbox
-                id="rememberMe"
-                className="w-4 h-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500 accent-orange-500"
-              />
-              <label
-                htmlFor="rememberMe"
-                className="text-sm font-medium text-slate-600 cursor-pointer">
-                Remember Me
-              </label>
+              className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="rememberMe"
+                  className="w-4 h-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500 accent-orange-500"
+                />
+                <label
+                  htmlFor="rememberMe"
+                  className="text-sm font-medium text-slate-600 cursor-pointer">
+                  Remember Me
+                </label>
+              </div>
+              <Link
+                href={"/?tab=forgot_password"}
+                className="text-sm font-semibold text-orange-600 hover:underline underline-offset-4">
+                Forgot password?
+              </Link>
             </motion.div>
 
             <motion.div variants={itemVariants}>
